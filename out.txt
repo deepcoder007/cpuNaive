@@ -1,0 +1,6 @@
+[ 27%] Built target CPUNAIVE
+[ 63%] Built target regression
+Scanning dependencies of target regression_multithread
+[ 72%] Building CXX object CMakeFiles/regression_multithread.dir/src/regression_multithread.cpp.o
+Linking CXX executable bin/regression_multithread
+[100%] Built target regression_multithread
