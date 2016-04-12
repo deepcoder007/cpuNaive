@@ -22,7 +22,6 @@ public:
     float getValue(CONF key);
     void setValue(CONF key,float val);
     bool keyExist(CONF key);
-
     int getSize();           // returns the number of keys in container
 };
 

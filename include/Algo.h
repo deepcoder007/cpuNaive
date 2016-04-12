@@ -1,12 +1,12 @@
-#ifndef ACO_H
-#define ACO_H
+#ifndef ALGO_H
+#define ALGO_H
 #include"keyValueStore.h"
 #include"Graph.h"
 #include<vector>
 #include<set>
 
 
-// This class will run the ACO algorithm in its thread
+// This class will run the metaheuristic algorithm in its thread
 class Ant
 {
 private:
