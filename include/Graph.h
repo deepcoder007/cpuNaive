@@ -20,6 +20,7 @@ private:
     int grid[100][100];    // to store the adjacency matrix of underlying graph
     keyValueStore storage;   // to store the pheromone content
     set<CONF> visited;       // to store the visited configuration nodes
+    set<int> nvisited;       // to store the visited robot pos
 
     mutex phero_mutex;       // mutex while accessing the storage structure
     mutex tag_mutex;         // mutex for tagging the visited nodes
@@ -32,12 +33,15 @@ public:
     void readFromFile(string name); // read from file in `data` directory
     set<CONF> getNeighbour(CONF conf); // neighbours of this configuration
     bool isNeighbour(CONF conf1,CONF conf2); // are they neighbouring
-    float getPhero(CONF conf1,CONF conf2);  // pheromone content of :q
-    bool setPhero(CONF conf1,CONF conf2, float value);
+
+    float getPhero(CONF conf);  // pheromone content  
+    bool setPhero(CONF conf, float value);
     int getNodeCnt();       // returns the number of nodes in the graph
+
     void markVisit(CONF conf);
     bool isVisit(CONF conf);   // checks if the node is visited
-    void clearVisit(CONF conf);   // clear the visited nodes before next iter
+    bool isnVisit(int k);
+    void clearVisit(CONF conf);   // clear the visited nodes 
 
     // CAUTION: DONT use these in production, violates the thread safety
     CONF setVac(CONF key,int pos);     // set the position vacant

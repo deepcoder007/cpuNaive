@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/vibhanshu/bkp/BTP/codes/cpuNaive/src/Graph.cpp
+/home/vibhanshu/BTP/cpuNaive/src/Graph.cpp
 Graph.h
-/home/vibhanshu/bkp/BTP/codes/cpuNaive/src/Graph.h
+/home/vibhanshu/BTP/cpuNaive/src/Graph.h
 string
 -
 fstream
@@ -30,11 +30,37 @@ cstdlib
 unistd.h
 -
 
-/home/vibhanshu/bkp/BTP/codes/cpuNaive/src/debug.cpp
+/home/vibhanshu/BTP/cpuNaive/src/debug.cpp
 debug.h
-/home/vibhanshu/bkp/BTP/codes/cpuNaive/src/debug.h
+/home/vibhanshu/BTP/cpuNaive/src/debug.h
 
-/home/vibhanshu/bkp/BTP/codes/cpuNaive/src/regression.cpp
+/home/vibhanshu/BTP/cpuNaive/src/keyValueStore.cpp
+iostream
+-
+cstdio
+-
+cstdlib
+-
+unordered_map
+-
+map
+-
+algorithm
+-
+array
+-
+utility
+-
+thread
+-
+chrono
+-
+unistd.h
+-
+keyValueStore.h
+/home/vibhanshu/BTP/cpuNaive/src/keyValueStore.h
+
+/home/vibhanshu/BTP/cpuNaive/src/regression.cpp
 iostream
 -
 cstdio
@@ -48,11 +74,11 @@ fstream
 sstream
 -
 keyValueStore.h
-/home/vibhanshu/bkp/BTP/codes/cpuNaive/src/keyValueStore.h
+/home/vibhanshu/BTP/cpuNaive/src/keyValueStore.h
 Graph.h
-/home/vibhanshu/bkp/BTP/codes/cpuNaive/src/Graph.h
+/home/vibhanshu/BTP/cpuNaive/src/Graph.h
 debug.h
-/home/vibhanshu/bkp/BTP/codes/cpuNaive/src/debug.h
+/home/vibhanshu/BTP/cpuNaive/src/debug.h
 
 include/Graph.h
 string

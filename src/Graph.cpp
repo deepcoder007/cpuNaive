@@ -230,22 +230,19 @@ bool Graph::isNeighbour(CONF conf1,CONF conf2) {
 /*
     Returns the pheromone content of the graph
 */
-float Graph::getPhero(CONF conf1,CONF conf2) {
+float Graph::getPhero(CONF conf) {
     // lock before doing it
     lock_guard<mutex> lck(phero_mutex);
-    PKEY key = storage.getKey(conf1, conf2);
-    return storage.getValue(key);
-
+    return storage.getValue(conf);
 }
 
 /*
     Sets the value of pheromone in the graph
 */
-bool Graph::setPhero(CONF conf1, CONF conf2, float value) {
+bool Graph::setPhero(CONF conf, float value) {
     // lock before doing this
     lock_guard<mutex> lck(phero_mutex);
-    PKEY key = storage.getKey(conf1,conf2);
-    storage.setValue(key,value);
+    storage.setValue(conf, value);
 }
 
 /*
@@ -261,6 +258,7 @@ int Graph::getNodeCnt() {
 void Graph::markVisit(CONF conf) {
     lock_guard<mutex> lck(tag_mutex);
     visited.insert(conf);
+    nvisited.insert(conf[0]);
 }
 
 /*
@@ -275,11 +273,23 @@ bool Graph::isVisit(CONF conf) {
 }
 
 /*
+    Checks if node k is visited by this key
+*/
+bool Graph::isnVisit(int k) {
+    lock_guard<mutex> lck(tag_mutex);
+    if( nvisited.find(k) == nvisited.end() ) 
+        return false;
+    else 
+        return true;
+}
+
+/*
     Clear the list of visited nodes before start of next ACO iteration
 */
 void Graph::clearVisit(CONF conf) {
     lock_guard<mutex> lck(tag_mutex);
     visited.clear();
+    nvisited.clear();
 }
 
 /*
