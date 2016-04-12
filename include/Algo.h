@@ -29,7 +29,7 @@ private:
     Graph* g;
     string datasetName;
     
-    set<CONF> filterCONF(set<CONF> in);  // filter out the visited CONFs
+    set<pair<CONF,int> > filterCONF(set<pair<CONF,int> > in);  // filter out the visited CONFs
 public:
     void setInit(CONF conf);
     void setDataset(string filename);
@@ -46,7 +46,7 @@ private:
    Graph* g;
    string datasetName;
 
-   static set<CONF> filterCONF(Graph* g, set<CONF> in);
+   static set<pair<CONF,int> > filterCONF(Graph* g, set<pair<CONF,int> > in);
    map<int,int> dist;       // distance from home node to all the nodes
 
    static void antThread(Graph* g,CONF initConf,Ant* antobj, map<int,int>* globDist);

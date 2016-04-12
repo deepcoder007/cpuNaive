@@ -124,12 +124,16 @@ inline bool Graph::isValid(CONF key) {
 void Graph::readFromFile(string name) {
    string line;
    int a,b;
+   int w;   // weight of graph
    cout<<"file : "<<"data/"+name<<endl;
    ifstream infile("data/"+name);
    while( getline(infile, line) ) {
        vector<string> data = split(line,','); 
        a = atoi(data[0].c_str());
        b = atoi(data[1].c_str());
+       w = 1;
+       if( data.size() > 2 ) // i.e. it has weight values also
+           w = atoi(data[2].c_str());
        if( a==b ) 
            continue;
        a++ ; b++ ;
@@ -138,6 +142,7 @@ void Graph::readFromFile(string name) {
        if( mgrid.find(a) == mgrid.end() )
            mgrid[a] = set<int>();
        mgrid[a].insert(b);     // insert a directed edge
+       gweight[ make_pair(a,b) ] = w;
    }
 
 }
@@ -147,8 +152,8 @@ void Graph::readFromFile(string name) {
     conf -> the configuration for which the neighbors are to be found
     TODO : optimization possible, currently it is brute force approach
 */
-set<CONF> Graph::getNeighbour(CONF conf) {
-    set<CONF> out;   // to be returned 
+set<pair<CONF,int> > Graph::getNeighbour(CONF conf) {
+    set<pair<CONF,int> > out;   // to be returned 
 
     int rPos = conf[0];
     int i,j;
@@ -161,7 +166,7 @@ set<CONF> Graph::getNeighbour(CONF conf) {
         if( isVacant(conf,nVector[i]) ) {
             tmpConf = conf;
             tmpConf[0] = nVector[i];
-            out.insert(tmpConf);
+            out.insert(make_pair( tmpConf, ROBOT_COST*gweight[ make_pair(rPos,tmpConf[0]) ]));
         }
     }
 
@@ -174,7 +179,7 @@ set<CONF> Graph::getNeighbour(CONF conf) {
             nVector = gNeighbors(i); 
             for( j=0 ; j<nVector.size() ; j++ ) {
                 if( isVacant(conf,j) ) {
-                    out.insert( setVac( unsVac(conf, j), i));
+                    out.insert( make_pair( setVac( unsVac(conf, j), i), OBS_COST*gweight[ make_pair(i,j) ]));
                 }
             }
         }

@@ -9,10 +9,10 @@
 #include"keyValueStore.h"
 
 // cost of moving a robot
-#define ROBOT_COST 1.0
+#define ROBOT_COST 1
 
 // cost of moving an obstacle
-#define OBS_COST 1.0
+#define OBS_COST 1
 
 /*
     NOTE : Graph will have nodes starting from 1, in bitset this factor 
@@ -41,7 +41,7 @@ private:
 public:
     bool isVacant(CONF key,int pos);   // is the position empty
     void readFromFile(string name); // read from file in `data` directory
-    set<CONF> getNeighbour(CONF conf); // neighbours of this configuration
+    set<pair<CONF,int> > getNeighbour(CONF conf); // neighbours of this configuration , along with the cost of each configuration
     bool isNeighbour(CONF conf1,CONF conf2); // are they neighbouring
 
     float getPhero(CONF conf);  // pheromone content  
