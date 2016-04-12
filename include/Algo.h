@@ -5,6 +5,8 @@
 #include<vector>
 #include<set>
 #include<string>
+#include<map>
+#include<mutex>
 
 // This file will contain all the algos that are to be implemented , bruteforce,random ant, ACO, etc.
 
@@ -44,7 +46,10 @@ private:
    Graph* g;
    string datasetName;
 
-   set<CONF> filterCONF(set<CONF> in);
+   static set<CONF> filterCONF(Graph* g, set<CONF> in);
+   map<int,int> dist;       // distance from home node to all the nodes
+
+   static void antThread(Graph* g,CONF initConf,Ant* antobj, map<int,int>* globDist);
 public:
    void setInit(CONF conf);
    void setDataset(string filename);

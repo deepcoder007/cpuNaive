@@ -18,7 +18,10 @@ class Graph
 {
 private:
     int n;          // Number of nodes in graph
-    int grid[100][100];    // to store the adjacency matrix of underlying graph
+    //int grid[100][100];    // to store the adjacency matrix of underlying graph
+    map<int,set<int> > mgrid;  // an adjacency list for grid
+    map<pair<int,int>, float> gweight;   // weight of edges in underlying g
+    
     keyValueStore storage;   // to store the pheromone content
     set<CONF> visited;       // to store the visited configuration nodes
     set<int> nvisited;       // to store the visited robot pos

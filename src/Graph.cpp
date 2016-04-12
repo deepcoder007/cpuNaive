@@ -26,7 +26,7 @@ vector<string> split(string str, char delimiter=' ') {
     Checks if x and y are adjacent nodes in the underlying graph
 */
 bool Graph::gAdjacent(int x,int y) {
-    if( grid[x][y]!=0 ) 
+    if( mgrid.find(x) != mgrid.end()  && mgrid[x].find(y) != mgrid[x].end() )
         return true;
     else
         return false;
@@ -37,9 +37,13 @@ bool Graph::gAdjacent(int x,int y) {
 */
 vector<int> Graph::gNeighbors(int x) {
     vector<int> out;
+    // if no such element x  => return an empty list
+    if( mgrid.find(x) == mgrid.end() ) 
+        return out;
+
     int i;
     for( i=1; i<=n ; i++ )
-        if( grid[x][i]!= 0 )
+        if( mgrid[x].find(i) != mgrid[x].end() )
             out.push_back(i);
     return out;
 }
@@ -118,7 +122,6 @@ inline bool Graph::isValid(CONF key) {
     Read the underlying graph from the text file
 */
 void Graph::readFromFile(string name) {
-   memset(grid, 0, sizeof(grid) );
    string line;
    int a,b;
    cout<<"file : "<<"data/"+name<<endl;
@@ -132,27 +135,11 @@ void Graph::readFromFile(string name) {
        a++ ; b++ ;
        n = max( n, max(a,b) );
        // for unweighted directed graph;
-       grid[a][b] = 1; 
+       if( mgrid.find(a) == mgrid.end() )
+           mgrid[a] = set<int>();
+       mgrid[a].insert(b);     // insert a directed edge
    }
 
-#ifdef DEBUG
-    cout<<" Printing the read graph : "<<endl;
-    cout<<" Number of nodes  : "<<n<<endl;
-    int i,j,k;
-    k=0;
-    cout<<k<<" | ";
-    for( j=1 ; j<=n ; j++ )
-        cout<<j<<" | ";
-    cout<<endl;
-    for( i=1 ; i<=n ; i++ ) {
-        cout<<++k<<" | ";
-        for( j=1 ; j<=n ; j++ ) {
-            cout<<grid[i][j]<<" | ";
-        }
-        cout<<endl;
-    }
-
-#endif
 }
 
 /*

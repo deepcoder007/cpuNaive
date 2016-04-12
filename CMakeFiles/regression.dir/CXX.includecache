@@ -6,27 +6,23 @@
 
 #IncludeRegexTransform: 
 
-/home/vibhanshu/BTP/cpuNaive/src/regression.cpp
-iostream
--
-cstdio
--
-cstdlib
--
-unistd.h
--
-fstream
--
-sstream
--
+/home/vibhanshu/BTP/cpuNaive/src/Algo.cpp
 keyValueStore.h
 /home/vibhanshu/BTP/cpuNaive/src/keyValueStore.h
 Graph.h
 /home/vibhanshu/BTP/cpuNaive/src/Graph.h
-debug.h
-/home/vibhanshu/BTP/cpuNaive/src/debug.h
 Algo.h
 /home/vibhanshu/BTP/cpuNaive/src/Algo.h
+debug.h
+/home/vibhanshu/BTP/cpuNaive/src/debug.h
+ctime
+-
+cstdlib
+-
+iostream
+-
+thread
+-
 
 include/Algo.h
 keyValueStore.h
@@ -38,6 +34,10 @@ vector
 set
 -
 string
+-
+map
+-
+mutex
 -
 
 include/Graph.h
