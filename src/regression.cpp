@@ -7,6 +7,7 @@
 #include"keyValueStore.h"
 #include"Graph.h"
 #include"debug.h"
+#include"Algo.h"
 using namespace std;
 
 // TEST: Generate the graph and print the result
@@ -38,6 +39,22 @@ void writeCONFtoFile(FILE* ptr, Graph* g, CONF conf) {
    fflush(ptr);
 }
 
+// Testing the randomANT system -> start a single thread of a random ant
+void test2()  {
+
+    CONF conf;
+    conf[0]=20;
+    conf[1]=0;
+    conf[2]=~0;
+    conf[3]=~0;
+
+    Ant rant ;
+    rant.setInit(conf);
+    rant.setDataset("graph64.dat");
+    rant.iterate();
+
+}
+
 
 int main() {
     cout<<"-----------------------------------------"<<endl;
@@ -50,7 +67,8 @@ int main() {
 
     // Sequence of test cases
 //    test1();
-    test4();
+//    test1();
+    test2();
 
     cout<<"-----------------------------------------"<<endl;
     cout<<"     Done with regression testing        "<<endl;

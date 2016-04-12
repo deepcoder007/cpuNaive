@@ -48,6 +48,8 @@ vector<int> Graph::gNeighbors(int x) {
     Is position pos is vacant in key
 */
 inline bool Graph::isVacant(CONF key, int pos) {
+    if( pos == key[0] )   // if the position has the robot
+        return false;
     int i,j;
     i=pos/INT_SZ; i++;   // the array index
     j=pos%INT_SZ;        // the bitindex
@@ -61,6 +63,12 @@ inline bool Graph::isVacant(CONF key, int pos) {
     Set the position vacant in the key and return it
 */
 inline CONF Graph::setVac(CONF key,int pos) {
+    if( pos == key[0] )    // i.e. an error condition
+    {
+        CONF key2 ;
+        key2[0]=-1;
+        return key2;
+    }
     int i,j;
     i = pos/INT_SZ ; i++;
     j = pos%INT_SZ;
@@ -72,6 +80,8 @@ inline CONF Graph::setVac(CONF key,int pos) {
     Mark the position as filled with obstacle in the node
 */
 inline CONF Graph::unsVac(CONF key,int pos) {
+    if( pos == key[0] )  // if that position has robot, no change
+        return key;
     int i,j;
     i = pos/INT_SZ ; i++;
     j = pos%INT_SZ;
@@ -91,7 +101,7 @@ inline int Graph::cntVac(CONF key) {
     for( i=1 ; i<n ; i++ ) 
         if( isVacant(key, i) )
             out++;
-    return (out-1);   // account for the robot also
+    return (out);   // account for the robot also
 }
 
 /*
@@ -170,7 +180,10 @@ set<CONF> Graph::getNeighbour(CONF conf) {
 
     // move the obstacles
     for( i=1 ; i<=n ; i++ ) {
-        if( !isVacant(conf,i) ) {
+        if( i == conf[0] )  // skip this iteration is current node has robot
+            continue;
+        if( !isVacant(conf,i) ) {  
+            nVector.clear();
             nVector = gNeighbors(i); 
             for( j=0 ; j<nVector.size() ; j++ ) {
                 if( isVacant(conf,j) ) {
@@ -243,6 +256,7 @@ bool Graph::setPhero(CONF conf, float value) {
     // lock before doing this
     lock_guard<mutex> lck(phero_mutex);
     storage.setValue(conf, value);
+    return true;
 }
 
 /*
@@ -291,6 +305,14 @@ void Graph::clearVisit(CONF conf) {
     visited.clear();
     nvisited.clear();
 }
+
+/*
+    Returns the number of visited nodes
+*/
+int Graph::visitCnt() {
+    return visited.size();
+}
+
 
 /*
     returns the size of the underlying key-value store

@@ -115,6 +115,30 @@ regression/fast:
 	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/build
 .PHONY : regression/fast
 
+src/Algo.o: src/Algo.cpp.o
+.PHONY : src/Algo.o
+
+# target to build an object file
+src/Algo.cpp.o:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/Algo.cpp.o
+.PHONY : src/Algo.cpp.o
+
+src/Algo.i: src/Algo.cpp.i
+.PHONY : src/Algo.i
+
+# target to preprocess a source file
+src/Algo.cpp.i:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/Algo.cpp.i
+.PHONY : src/Algo.cpp.i
+
+src/Algo.s: src/Algo.cpp.s
+.PHONY : src/Algo.s
+
+# target to generate assembly for a file
+src/Algo.cpp.s:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/Algo.cpp.s
+.PHONY : src/Algo.cpp.s
+
 src/Graph.o: src/Graph.cpp.o
 .PHONY : src/Graph.o
 
@@ -220,6 +244,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... regression"
+	@echo "... src/Algo.o"
+	@echo "... src/Algo.i"
+	@echo "... src/Algo.s"
 	@echo "... src/Graph.o"
 	@echo "... src/Graph.i"
 	@echo "... src/Graph.s"

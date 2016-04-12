@@ -11,6 +11,7 @@
 /*
     NOTE : Graph will have nodes starting from 1, in bitset this factor 
     should be considered to avoid wastage of space.
+    NOTE 2 : The position of robot is not marked vacant, this was a potential source of bug earlier
 */
 
 class Graph
@@ -42,6 +43,7 @@ public:
     bool isVisit(CONF conf);   // checks if the node is visited
     bool isnVisit(int k);
     void clearVisit(CONF conf);   // clear the visited nodes 
+    int visitCnt();            // count the number of visited nodes
 
     // CAUTION: DONT use these in production, violates the thread safety
     CONF setVac(CONF key,int pos);     // set the position vacant

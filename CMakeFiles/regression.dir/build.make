@@ -49,9 +49,32 @@ include CMakeFiles/regression.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/regression.dir/flags.make
 
+CMakeFiles/regression.dir/src/Algo.cpp.o: CMakeFiles/regression.dir/flags.make
+CMakeFiles/regression.dir/src/Algo.cpp.o: src/Algo.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/vibhanshu/BTP/cpuNaive/CMakeFiles $(CMAKE_PROGRESS_1)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/regression.dir/src/Algo.cpp.o"
+	/home/vibhanshu/installed/llvm/bin/clang++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/regression.dir/src/Algo.cpp.o -c /home/vibhanshu/BTP/cpuNaive/src/Algo.cpp
+
+CMakeFiles/regression.dir/src/Algo.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/regression.dir/src/Algo.cpp.i"
+	/home/vibhanshu/installed/llvm/bin/clang++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/vibhanshu/BTP/cpuNaive/src/Algo.cpp > CMakeFiles/regression.dir/src/Algo.cpp.i
+
+CMakeFiles/regression.dir/src/Algo.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/regression.dir/src/Algo.cpp.s"
+	/home/vibhanshu/installed/llvm/bin/clang++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/vibhanshu/BTP/cpuNaive/src/Algo.cpp -o CMakeFiles/regression.dir/src/Algo.cpp.s
+
+CMakeFiles/regression.dir/src/Algo.cpp.o.requires:
+.PHONY : CMakeFiles/regression.dir/src/Algo.cpp.o.requires
+
+CMakeFiles/regression.dir/src/Algo.cpp.o.provides: CMakeFiles/regression.dir/src/Algo.cpp.o.requires
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/Algo.cpp.o.provides.build
+.PHONY : CMakeFiles/regression.dir/src/Algo.cpp.o.provides
+
+CMakeFiles/regression.dir/src/Algo.cpp.o.provides.build: CMakeFiles/regression.dir/src/Algo.cpp.o
+
 CMakeFiles/regression.dir/src/Graph.cpp.o: CMakeFiles/regression.dir/flags.make
 CMakeFiles/regression.dir/src/Graph.cpp.o: src/Graph.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/vibhanshu/BTP/cpuNaive/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/vibhanshu/BTP/cpuNaive/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/regression.dir/src/Graph.cpp.o"
 	/home/vibhanshu/installed/llvm/bin/clang++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/regression.dir/src/Graph.cpp.o -c /home/vibhanshu/BTP/cpuNaive/src/Graph.cpp
 
@@ -74,7 +97,7 @@ CMakeFiles/regression.dir/src/Graph.cpp.o.provides.build: CMakeFiles/regression.
 
 CMakeFiles/regression.dir/src/keyValueStore.cpp.o: CMakeFiles/regression.dir/flags.make
 CMakeFiles/regression.dir/src/keyValueStore.cpp.o: src/keyValueStore.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/vibhanshu/BTP/cpuNaive/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/vibhanshu/BTP/cpuNaive/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/regression.dir/src/keyValueStore.cpp.o"
 	/home/vibhanshu/installed/llvm/bin/clang++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/regression.dir/src/keyValueStore.cpp.o -c /home/vibhanshu/BTP/cpuNaive/src/keyValueStore.cpp
 
@@ -97,7 +120,7 @@ CMakeFiles/regression.dir/src/keyValueStore.cpp.o.provides.build: CMakeFiles/reg
 
 CMakeFiles/regression.dir/src/regression.cpp.o: CMakeFiles/regression.dir/flags.make
 CMakeFiles/regression.dir/src/regression.cpp.o: src/regression.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/vibhanshu/BTP/cpuNaive/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/vibhanshu/BTP/cpuNaive/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/regression.dir/src/regression.cpp.o"
 	/home/vibhanshu/installed/llvm/bin/clang++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/regression.dir/src/regression.cpp.o -c /home/vibhanshu/BTP/cpuNaive/src/regression.cpp
 
@@ -120,7 +143,7 @@ CMakeFiles/regression.dir/src/regression.cpp.o.provides.build: CMakeFiles/regres
 
 CMakeFiles/regression.dir/src/debug.cpp.o: CMakeFiles/regression.dir/flags.make
 CMakeFiles/regression.dir/src/debug.cpp.o: src/debug.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/vibhanshu/BTP/cpuNaive/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/vibhanshu/BTP/cpuNaive/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/regression.dir/src/debug.cpp.o"
 	/home/vibhanshu/installed/llvm/bin/clang++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/regression.dir/src/debug.cpp.o -c /home/vibhanshu/BTP/cpuNaive/src/debug.cpp
 
@@ -143,6 +166,7 @@ CMakeFiles/regression.dir/src/debug.cpp.o.provides.build: CMakeFiles/regression.
 
 # Object files for target regression
 regression_OBJECTS = \
+"CMakeFiles/regression.dir/src/Algo.cpp.o" \
 "CMakeFiles/regression.dir/src/Graph.cpp.o" \
 "CMakeFiles/regression.dir/src/keyValueStore.cpp.o" \
 "CMakeFiles/regression.dir/src/regression.cpp.o" \
@@ -151,6 +175,7 @@ regression_OBJECTS = \
 # External object files for target regression
 regression_EXTERNAL_OBJECTS =
 
+bin/regression: CMakeFiles/regression.dir/src/Algo.cpp.o
 bin/regression: CMakeFiles/regression.dir/src/Graph.cpp.o
 bin/regression: CMakeFiles/regression.dir/src/keyValueStore.cpp.o
 bin/regression: CMakeFiles/regression.dir/src/regression.cpp.o
@@ -164,6 +189,7 @@ bin/regression: CMakeFiles/regression.dir/link.txt
 CMakeFiles/regression.dir/build: bin/regression
 .PHONY : CMakeFiles/regression.dir/build
 
+CMakeFiles/regression.dir/requires: CMakeFiles/regression.dir/src/Algo.cpp.o.requires
 CMakeFiles/regression.dir/requires: CMakeFiles/regression.dir/src/Graph.cpp.o.requires
 CMakeFiles/regression.dir/requires: CMakeFiles/regression.dir/src/keyValueStore.cpp.o.requires
 CMakeFiles/regression.dir/requires: CMakeFiles/regression.dir/src/regression.cpp.o.requires

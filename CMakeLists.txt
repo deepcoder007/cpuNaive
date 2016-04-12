@@ -5,5 +5,5 @@ set(CMAKE_CXX_FLAGS "-std=c++11 -pthread -DDEBUG ")
 include_directories(${PROJECT_BINARY_DIR}/include)
 include_directories(${CPUNAIVE_SOURCE_DIR}/include)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
-add_executable(regression src/Graph.cpp src/keyValueStore.cpp src/regression.cpp src/debug.cpp)
+add_executable(regression src/Algo.cpp src/Graph.cpp src/keyValueStore.cpp src/regression.cpp src/debug.cpp)
 
