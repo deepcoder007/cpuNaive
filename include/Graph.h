@@ -8,6 +8,12 @@
 #include<mutex>
 #include"keyValueStore.h"
 
+// cost of moving a robot
+#define ROBOT_COST 1.0
+
+// cost of moving an obstacle
+#define OBS_COST 1.0
+
 /*
     NOTE : Graph will have nodes starting from 1, in bitset this factor 
     should be considered to avoid wastage of space.

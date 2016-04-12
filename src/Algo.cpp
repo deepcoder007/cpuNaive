@@ -145,6 +145,7 @@ void Ant::antThread(Graph* g,CONF initConf,Ant* antobj, map<int,int>* globDist) 
             tmp1--;
 
         curr = *it;  // set the current value of configuration
+        // TODO : there is a scope of better criteria of distance
         dist[ curr[0] ] = min( dist[curr[0]], g->visitCnt() );
         g->markVisit( curr );        // mark the configuration visited
         confSet = filterCONF( g, g->getNeighbour( curr ) );  
