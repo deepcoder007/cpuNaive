@@ -7,7 +7,7 @@
 #include<iostream>
 #include<thread>
 
-#define THD 4
+#define THD 8
 using namespace std;
 
 

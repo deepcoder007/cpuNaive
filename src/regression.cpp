@@ -10,6 +10,7 @@
 #include"Algo.h"
 using namespace std;
 
+
 // TEST: Generate the graph and print the result
 void test1() {
     cout<<"[START] : test1 "<<endl;
@@ -49,8 +50,33 @@ void test2()  {
     conf[3]=~0;
 
     Ant rant ;
-    rant.setInit(conf);
+#if defined N8
+    cout<<"N8"<<endl;
+    rant.setDataset("graph8.dat");
+#elif defined N16
+    cout<<"N16"<<endl;
+    rant.setDataset("graph16.dat");
+#elif defined N32
+    cout<<"N32"<<endl;
+    rant.setDataset("graph32.dat");
+#elif defined N64
+    cout<<"N64"<<endl;
     rant.setDataset("graph64.dat");
+#elif defined N128
+    cout<<"N128"<<endl;
+    rant.setDataset("graph128.dat");
+#elif defined N256
+    cout<<"N256"<<endl;
+    rant.setDataset("graph256.dat");
+#elif defined N512
+    cout<<"N512"<<endl;
+    rant.setDataset("graph512.dat");
+#elif defined N1024
+    cout<<"N1024"<<endl;
+    rant.setDataset("graph1024.dat");
+#endif
+
+    rant.setInit(conf);
     rant.iterate();
 
 }
