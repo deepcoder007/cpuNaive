@@ -8,7 +8,7 @@
 #include<thread>
 #include<utility>
 
-#define THD 16 
+#define THD 8 
 using namespace std;
 
 // In this mutex we don't need higher level of granuality
@@ -135,7 +135,6 @@ void Ant::antThread(Graph* g,CONF initConf,Ant* antobj, map<int,int>* globDist) 
     g->markVisit( initConf );
     curr = make_pair( initConf, 0 );
 
-
     int loopCount=0;
     while( 1 ) {
         loopCount++;
@@ -148,16 +147,20 @@ void Ant::antThread(Graph* g,CONF initConf,Ant* antobj, map<int,int>* globDist) 
             tmp1--;
 
         curr = *it;  // set the current value of configuration
+        g->setPhero( curr.first , 1.0 );
+
         curr_cost += curr.second;   // add the cost of this node
         dist[ curr.first[0] ] = min( dist[curr.first[0]], curr_cost );
         g->markVisit( curr.first );        // mark the configuration visited
         confSet = filterCONF( g, g->getNeighbour( curr.first ) );  
+
     }
     // update the global distance matrix in this block
     {
         lock_guard<mutex> lck( Ant_dist_lock );
         for( int i=1 ; i<=n ; i++ )
             (*globDist)[i] = min( dist[i], (*globDist)[i] );
+
     }
 
     cout<<"Total cost of the current path : "<<curr_cost<<endl;

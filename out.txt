@@ -1,7 +1,0 @@
------------------------------------------
-     Start the regression testing        
------------------------------------------
-Current directory : /home/vibhanshu/BTP/cpuNaive
-N128
-file : data/graph128.dat
-Number of nodes in graph : 128
