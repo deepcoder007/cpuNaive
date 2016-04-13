@@ -8,10 +8,10 @@
 #include<thread>
 #include<utility>
 
-#define THD 8
+#define THD 16 
 using namespace std;
 
-
+// In this mutex we don't need higher level of granuality
 mutex Ant_dist_lock;
 
 /*
@@ -112,6 +112,7 @@ set<pair<CONF,int> > Ant::filterCONF(Graph* g,set<pair<CONF,int> > in) {
             out.insert(*it);
     return out;
 }
+
 
 /*
     This is to be invoked by a thread in ANT

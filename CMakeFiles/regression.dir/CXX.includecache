@@ -6,28 +6,38 @@
 
 #IncludeRegexTransform: 
 
-/home/vibhanshu/BTP/cpuNaive/src/Graph.cpp
+/home/vibhanshu/BTP/cpuNaive/src/Algo.cpp
+keyValueStore.h
+/home/vibhanshu/BTP/cpuNaive/src/keyValueStore.h
 Graph.h
 /home/vibhanshu/BTP/cpuNaive/src/Graph.h
-string
+Algo.h
+/home/vibhanshu/BTP/cpuNaive/src/Algo.h
+debug.h
+/home/vibhanshu/BTP/cpuNaive/src/debug.h
+ctime
 -
-fstream
+cstdlib
 -
+iostream
+-
+thread
+-
+utility
+-
+
+include/Algo.h
+keyValueStore.h
+include/keyValueStore.h
+Graph.h
+include/Graph.h
 vector
 -
 set
 -
-sstream
+string
 -
-cassert
--
-iostream
--
-cstdio
--
-cstdlib
--
-unistd.h
+map
 -
 
 include/Graph.h
@@ -41,6 +51,20 @@ set
 -
 mutex
 -
+shared_mutex
+-
+keyValueStore.h
+include/keyValueStore.h
+
+include/debug.h
+iostream
+-
+cstdio
+-
+cstdlib
+-
+Graph.h
+include/Graph.h
 keyValueStore.h
 include/keyValueStore.h
 
@@ -50,7 +74,5 @@ map
 array
 -
 utility
--
-mutex
 -
 

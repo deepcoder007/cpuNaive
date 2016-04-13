@@ -11,6 +11,7 @@
 #include<unistd.h>
 using namespace std;
 
+
 // Function to split the string by the given delimiter
 vector<string> split(string str, char delimiter=' ') {
     vector<string> interval;
@@ -21,6 +22,7 @@ vector<string> split(string str, char delimiter=' ') {
     }
     return interval;
 }
+
 
 /*
     Checks if x and y are adjacent nodes in the underlying graph
@@ -147,6 +149,7 @@ void Graph::readFromFile(string name) {
 
 }
 
+
 /*
     Returns the set of neighbours of the current configuration
     conf -> the configuration for which the neighbors are to be found
@@ -237,7 +240,7 @@ bool Graph::isNeighbour(CONF conf1,CONF conf2) {
 */
 float Graph::getPhero(CONF conf) {
     // lock before doing it
-    lock_guard<mutex> lck(phero_mutex);
+    shared_lock<shared_timed_mutex> lck(phero_mutex[conf[0]]);
     return storage.getValue(conf);
 }
 
@@ -246,7 +249,7 @@ float Graph::getPhero(CONF conf) {
 */
 bool Graph::setPhero(CONF conf, float value) {
     // lock before doing this
-    lock_guard<mutex> lck(phero_mutex);
+    unique_lock<shared_timed_mutex> lck(phero_mutex[conf[0]]);
     storage.setValue(conf, value);
     return true;
 }
@@ -262,8 +265,8 @@ int Graph::getNodeCnt() {
     Mark the node visited
 */
 void Graph::markVisit(CONF conf) {
-    lock_guard<mutex> lck(tag_mutex);
-    visited.insert(conf);
+    unique_lock<shared_timed_mutex> lck(tag_mutex[conf[0]]);
+    visited[conf[0]].insert(conf);
     nvisited.insert(conf[0]);
 }
 
@@ -271,8 +274,8 @@ void Graph::markVisit(CONF conf) {
     Checks if the node is visited
 */
 bool Graph::isVisit(CONF conf) {
-    lock_guard<mutex> lck(tag_mutex);
-    if( visited.find(conf) == visited.end() )
+    shared_lock<shared_timed_mutex> lck(tag_mutex[conf[0]]);
+    if( visited[conf[0]].find(conf) == visited[conf[0]].end() )
         return false;
     else
         return true;
@@ -282,7 +285,7 @@ bool Graph::isVisit(CONF conf) {
     Checks if node k is visited by this key
 */
 bool Graph::isnVisit(int k) {
-    lock_guard<mutex> lck(tag_mutex);
+    shared_lock<shared_timed_mutex> lck(univ_tag_mutex);
     if( nvisited.find(k) == nvisited.end() ) 
         return false;
     else 
@@ -293,8 +296,8 @@ bool Graph::isnVisit(int k) {
     Clear the list of visited nodes before start of next ACO iteration
 */
 void Graph::clearVisit(CONF conf) {
-    lock_guard<mutex> lck(tag_mutex);
-    visited.clear();
+    for( int i=1 ; i<= N_VAL ; i++ )
+        visited[i].clear();
     nvisited.clear();
 }
 
@@ -302,7 +305,10 @@ void Graph::clearVisit(CONF conf) {
     Returns the number of visited nodes
 */
 int Graph::visitCnt() {
-    return visited.size();
+    int res = 0;
+    for( int i=1 ; i<= N_VAL ; i++ )
+        res += visited[i].size();
+    return res;
 }
 
 

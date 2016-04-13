@@ -6,6 +6,7 @@
 #include<cstring>
 #include<set>
 #include<mutex>
+#include<shared_mutex>
 #include"keyValueStore.h"
 
 // cost of moving a robot
@@ -29,17 +30,17 @@ private:
     map<pair<int,int>, float> gweight;   // weight of edges in underlying g
     
     keyValueStore storage;   // to store the pheromone content
-    set<CONF> visited;       // to store the visited configuration nodes
+    set<CONF> visited[N_VAL+1];       // to store the visited configuration nodes
     set<int> nvisited;       // to store the visited robot pos
 
-    mutex phero_mutex;       // mutex while accessing the storage structure
-    mutex tag_mutex;         // mutex for tagging the visited nodes
+    shared_timed_mutex phero_mutex[N_VAL+1];       // mutex while accessing the storage structure
+    shared_timed_mutex tag_mutex[N_VAL+1];         // mutex for tagging the visited nodes
+    shared_timed_mutex univ_tag_mutex;
 
     // private functions for manipulation of underlying graph
     bool gAdjacent(int x,int y);
     vector<int> gNeighbors(int x);
 public:
-    bool isVacant(CONF key,int pos);   // is the position empty
     void readFromFile(string name); // read from file in `data` directory
     set<pair<CONF,int> > getNeighbour(CONF conf); // neighbours of this configuration , along with the cost of each configuration
     bool isNeighbour(CONF conf1,CONF conf2); // are they neighbouring
@@ -54,7 +55,7 @@ public:
     void clearVisit(CONF conf);   // clear the visited nodes 
     int visitCnt();            // count the number of visited nodes
 
-    // CAUTION: DONT use these in production, violates the thread safety
+    bool isVacant(CONF key,int pos);   // is the position empty
     CONF setVac(CONF key,int pos);     // set the position vacant
     CONF unsVac(CONF key,int pos);     // unset the position
     bool isValid(CONF key);     // is it a valid configuration 
