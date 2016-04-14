@@ -264,6 +264,16 @@ bool Graph::setPhero(CONF conf, float value) {
 }
 
 /*
+    Checks if pheromone exist for the given configuration
+*/
+bool Graph::existPhero(CONF conf) {
+    // lock before doing this
+    unique_lock<shared_timed_mutex> lck(phero_mutex[conf[0]]);
+    return storage.keyExist(conf);
+}
+
+
+/*
     Returns the number of nodes in the graph
     NOTE: THREAD_SAFE
 */

@@ -10,7 +10,6 @@
 #include<chrono>
 #include<unistd.h>
 #include"keyValueStore.h"
-#define THD 4
 //#include"keyValueStore.h"
 using namespace std;
 

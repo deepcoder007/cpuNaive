@@ -8,13 +8,7 @@
 #include<mutex>
 #include<shared_mutex>
 #include"keyValueStore.h"
-
-// cost of moving a robot
-#define ROBOT_COST 1
-
-// cost of moving an obstacle
-#define OBS_COST 1
-
+#include"config.h"
 /*
     NOTE : Graph will have nodes starting from 1, in bitset this factor 
     should be considered to avoid wastage of space.
@@ -49,11 +43,12 @@ public:
 
     float getPhero(CONF conf);  // pheromone content  
     bool setPhero(CONF conf, float value);
+    bool existPhero(CONF conf);   //checks if the Pheromone exist for current
     int getNodeCnt();       // returns the number of nodes in the graph
 
     void markVisit(CONF conf);
     bool isVisit(CONF conf);   // checks if the node is visited
-    bool isnVisit(int k);
+    bool isnVisit(int k);     // checks if the robot pos is visited
     void clearVisit(CONF conf);   // clear the visited nodes 
     int visitCnt();            // count the number of visited nodes
 

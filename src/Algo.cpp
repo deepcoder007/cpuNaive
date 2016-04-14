@@ -7,8 +7,8 @@
 #include<iostream>
 #include<thread>
 #include<utility>
+#include<random>
 
-#define THD 8 
 using namespace std;
 
 // In this mutex we don't need higher level of granuality
@@ -231,12 +231,57 @@ void Ant2::setDataset(string filename) {
 }
 
 
+/*
+    Removes the configurations which are already visited
+*/
 set<pair<CONF,int> > Ant2::filterCONF(Graph* g,set<pair<CONF,int> > in) {
     set<pair<CONF,int> > out;
     for( auto it = in.begin() ; it!=in.end() ; it++ )
         if( !g->isVisit(it->first) )
             out.insert(*it);
     return out;
+}
+
+
+/*
+    Returns the next configuration from the set
+    curr    : The position of current configuration of ANT
+    confSet : configuraiton set of neighbours of atn
+*/
+pair<CONF,int> Ant2::getNextConf( CONF curr, set<pair<CONF,int> >& confSet, Graph* g ) {
+
+    vector<pair<CONF,int> > vConf;  // stores the list of configuration
+    vector<int>  vProb;     // stores the probabilities
+    CONF itConf;    // stores the CONF of current it
+    float currPhero;        // the pheromone content of current graph
+
+    // loop over the confSet
+    for( auto it = confSet.begin() ; it != confSet.end() ; it++ ) {
+        vConf.push_back(*it);  // push the [pair<CONF,int>] pair as it is
+
+        itConf = it->first;
+
+        // if pheromone value does not exist as of now
+        currPhero = PHERO_MAX;
+        if( g->existPhero(itConf) )
+            currPhero = g->getPhero(itConf);
+
+        if( itConf[0] == curr[0] ) {
+            // CASE : robot position does not change
+            vProb.push_back( currPhero );
+        } else if( g->isnVisit(itConf[0]) ) {
+            // CASE : the position was earlier visited by robot
+            //        higher premium for accessing it
+            vProb.push_back( currPhero*EXPLORE_DIFF );
+        } else {
+            // CASE : the position was never visited by robot
+            //        highest premium for accessing it
+            vProb.push_back( currPhero*EXPLORE_DIFF*EXPLORE_MULTI );
+        }
+    }
+    random_device rd;
+    discrete_distribution<int> dist(vProb.begin(), vProb.end());
+    return vConf[ dist(rd) ];
 }
 
 
@@ -267,14 +312,21 @@ void Ant2::antThread(Graph* g,CONF initConf,Ant2* antobj, map<int,int>* globDist
         cout<<" Loop Number : "<<loopCount<<endl;
         if( confSet.size() == 0 ) 
             break;
- //       cout<<" neighbour size : "<<confSet.size()<<endl;
-        tmp1 = rand() % confSet.size() ;  // decide the next node to visit
-        auto it = confSet.begin();
-        for( ; it!=confSet.end() && tmp1>0 ; it++ ) 
-            tmp1--;
 
-        curr = *it;  // set the current value of configuration
-        g->setPhero( curr.first , 1.0 );
+ //       cout<<" neighbour size : "<<confSet.size()<<endl;
+
+        // Generate numbers according to a distribution 
+
+
+        //tmp1 = rand() % confSet.size() ;  // decide the next node to visit
+
+        //auto it = confSet.begin();
+        //for( ; it!=confSet.end() && tmp1>0 ; it++ ) 
+        //    tmp1--;
+        //curr = *it;  // set the current value of configuration
+
+        curr = getNextConf( curr.first, confSet, g );
+        g->setPhero( curr.first , PHERO_MAX );
 
         curr_cost += curr.second;   // add the cost of this node
         dist[ curr.first[0] ] = min( dist[curr.first[0]], curr_cost );
@@ -311,7 +363,7 @@ void Ant2::iterate() {
     // Spawn other threads from here.
     vector<thread> vthread;    // vector of threads in ACO
     for( int i=0 ; i<THD ; i++ )
-        vthread.push_back( (thread(antThread, g, initConf, this, &dist, 100)) );
+        vthread.push_back( (thread(antThread, g, initConf, this, &dist, 1000)) );
 
     // WAIT FOR THREADS TO COMPLETE THEIR WORK
 
