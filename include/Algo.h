@@ -55,4 +55,24 @@ public:
    void iterate();  // to execute 1 step of ACO
 };
 
+
+// This class will run the metaheuristic algorithm in its thread
+class Ant2 : public Algo
+{
+private:
+    // Here there will be a global tabu_list  in graph g
+   CONF initConf;
+   Graph* g;
+   string datasetName;
+
+   map<int,int> dist;       // distance from home node to all the nodes
+
+   static set<pair<CONF,int> > filterCONF(Graph* g, set<pair<CONF,int> > in);
+   static void antThread(Graph* g,CONF initConf,Ant2* antobj, map<int,int>* globDist, int maxloopCount );
+public:
+   void setInit(CONF conf);
+   void setDataset(string filename);
+   void iterate();  // to execute 1 step of ACO
+};
+
 #endif

@@ -26,13 +26,15 @@ class Graph
 private:
     int n;          // Number of nodes in graph
     //int grid[100][100];    // to store the adjacency matrix of underlying graph
-    map<int,set<int> > mgrid;  // an adjacency list for grid
+//    map<int,set<int> > mgrid;  // an adjacency list for grid
+    set<int> mgrid[N_VAL+1];   // an adjacency list for grid
     map<pair<int,int>, float> gweight;   // weight of edges in underlying g
     
     keyValueStore storage;   // to store the pheromone content
     set<CONF> visited[N_VAL+1];       // to store the visited configuration nodes
     set<int> nvisited;       // to store the visited robot pos
 
+    shared_timed_mutex mgrid_mutex[N_VAL+1];     // mutex for mgrid
     shared_timed_mutex phero_mutex[N_VAL+1];       // mutex while accessing the storage structure
     shared_timed_mutex tag_mutex[N_VAL+1];         // mutex for tagging the visited nodes
     shared_timed_mutex univ_tag_mutex;

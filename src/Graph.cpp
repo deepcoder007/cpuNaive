@@ -13,6 +13,7 @@ using namespace std;
 
 
 // Function to split the string by the given delimiter
+// NOTE:  THREAD_SAFE
 vector<string> split(string str, char delimiter=' ') {
     vector<string> interval;
     stringstream ss(str);
@@ -28,7 +29,7 @@ vector<string> split(string str, char delimiter=' ') {
     Checks if x and y are adjacent nodes in the underlying graph
 */
 bool Graph::gAdjacent(int x,int y) {
-    if( mgrid.find(x) != mgrid.end()  && mgrid[x].find(y) != mgrid[x].end() )
+    if( mgrid[x].find(y) != mgrid[x].end() )
         return true;
     else
         return false;
@@ -36,15 +37,14 @@ bool Graph::gAdjacent(int x,int y) {
 
 /*
     Returns a vector of neighbours of node x in the underlying graph
+    NOTE: THREAD_SAFE
+    TODO : check if we can do without unique_lock and use shared_lock for better performance
 */
 vector<int> Graph::gNeighbors(int x) {
     vector<int> out;
-    // if no such element x  => return an empty list
-    if( mgrid.find(x) == mgrid.end() ) 
-        return out;
-
-    int i;
-    for( i=1; i<=n ; i++ )
+    // first lock the mgrid structure 
+    unique_lock<shared_timed_mutex> lck(mgrid_mutex[x]);
+    for( int  i=1; i<=n ; i++ )
         if( mgrid[x].find(i) != mgrid[x].end() )
             out.push_back(i);
     return out;
@@ -52,6 +52,7 @@ vector<int> Graph::gNeighbors(int x) {
 
 /*
     Is position pos is vacant in key
+    NOTE: THREAD_SAFE 
 */
 inline bool Graph::isVacant(CONF key, int pos) {
     if( pos == key[0] )   // if the position has the robot
@@ -67,6 +68,7 @@ inline bool Graph::isVacant(CONF key, int pos) {
 
 /*
     Set the position vacant in the key and return it
+    NOTE: THREAD_SAFE
 */
 inline CONF Graph::setVac(CONF key,int pos) {
     if( pos == key[0] )    // i.e. an error condition
@@ -84,6 +86,7 @@ inline CONF Graph::setVac(CONF key,int pos) {
 
 /*
     Mark the position as filled with obstacle in the node
+    NOTE: THREAD_SAFE
 */
 inline CONF Graph::unsVac(CONF key,int pos) {
     if( pos == key[0] )  // if that position has robot, no change
@@ -97,6 +100,7 @@ inline CONF Graph::unsVac(CONF key,int pos) {
 
 /*
     Returns the number of vacant nodes in the configuration 
+    NOTE: THREAD_SAFE
 */
 inline int Graph::cntVac(CONF key) {
 #ifdef DEBUG
@@ -112,6 +116,7 @@ inline int Graph::cntVac(CONF key) {
 
 /*
     Check if this is a valid configuration
+    NOTE: THREAD_SAFE
 */
 inline bool Graph::isValid(CONF key) {
     if( isVacant(key, key[0]) )
@@ -122,6 +127,7 @@ inline bool Graph::isValid(CONF key) {
 
 /*
     Read the underlying graph from the text file
+    NOTE: Called only once in program
 */
 void Graph::readFromFile(string name) {
    string line;
@@ -141,11 +147,11 @@ void Graph::readFromFile(string name) {
        a++ ; b++ ;
        n = max( n, max(a,b) );
        // for unweighted directed graph;
-       if( mgrid.find(a) == mgrid.end() )
-           mgrid[a] = set<int>();
        mgrid[a].insert(b);     // insert a directed edge
+       // for weights 
        gweight[ make_pair(a,b) ] = w;
    }
+   cout<<"No. of weights : "<<gweight.size()<<endl;
 
 }
 
@@ -156,6 +162,7 @@ void Graph::readFromFile(string name) {
     TODO : optimization possible, currently it is brute force approach
 */
 set<pair<CONF,int> > Graph::getNeighbour(CONF conf) {
+
     set<pair<CONF,int> > out;   // to be returned 
 
     int rPos = conf[0];
@@ -163,10 +170,11 @@ set<pair<CONF,int> > Graph::getNeighbour(CONF conf) {
     CONF tmpConf;      // temp conf
     vector<int> nVector;     // vector to hold neighbors
 
+
     // first move the robot 
     nVector = gNeighbors(rPos);
     for( i=0 ; i<nVector.size() ; i++ )  {
-        if( isVacant(conf,nVector[i]) ) {
+        if( isVacant(conf, nVector[i]) ) {
             tmpConf = conf;
             tmpConf[0] = nVector[i];
             out.insert(make_pair( tmpConf, ROBOT_COST*gweight[ make_pair(rPos,tmpConf[0]) ]));
@@ -177,12 +185,13 @@ set<pair<CONF,int> > Graph::getNeighbour(CONF conf) {
     for( i=1 ; i<=n ; i++ ) {
         if( i == conf[0] )  // skip this iteration is current node has robot
             continue;
+
         if( !isVacant(conf,i) ) {  
             nVector.clear();
             nVector = gNeighbors(i); 
             for( j=0 ; j<nVector.size() ; j++ ) {
-                if( isVacant(conf,j) ) {
-                    out.insert( make_pair( setVac( unsVac(conf, j), i), OBS_COST*gweight[ make_pair(i,j) ]));
+                if( isVacant(conf, nVector[j] )) {
+                    out.insert( make_pair( setVac( unsVac(conf, nVector[j] ), i), OBS_COST*gweight[ make_pair(i, nVector[j] ) ]));
                 }
             }
         }
@@ -192,6 +201,7 @@ set<pair<CONF,int> > Graph::getNeighbour(CONF conf) {
 
 /*
     is conf2 a neighbour of conf1
+    NOTE: THREAD_SAFE
 */
 bool Graph::isNeighbour(CONF conf1,CONF conf2) {
 
@@ -208,10 +218,7 @@ bool Graph::isNeighbour(CONF conf1,CONF conf2) {
            if( conf1[i]!=conf2[i] )
                flag = false;
 
-       if( flag )  // if same
-           return true;
-       else
-           return false;
+       return flag;
     }
     
     // change due to obstacles
@@ -237,6 +244,7 @@ bool Graph::isNeighbour(CONF conf1,CONF conf2) {
 
 /*
     Returns the pheromone content of the graph
+    NOTE: THREAD_SAFE
 */
 float Graph::getPhero(CONF conf) {
     // lock before doing it
@@ -246,6 +254,7 @@ float Graph::getPhero(CONF conf) {
 
 /*
     Sets the value of pheromone in the graph
+    NOTE: THREAD_SAFE
 */
 bool Graph::setPhero(CONF conf, float value) {
     // lock before doing this
@@ -256,6 +265,7 @@ bool Graph::setPhero(CONF conf, float value) {
 
 /*
     Returns the number of nodes in the graph
+    NOTE: THREAD_SAFE
 */
 int Graph::getNodeCnt() {
     return n;
@@ -263,6 +273,7 @@ int Graph::getNodeCnt() {
 
 /*
     Mark the node visited
+    NOTE: THREAD_SAFE
 */
 void Graph::markVisit(CONF conf) {
     unique_lock<shared_timed_mutex> lck(tag_mutex[conf[0]]);
@@ -272,6 +283,7 @@ void Graph::markVisit(CONF conf) {
 
 /*
     Checks if the node is visited
+    NOTE: THREAD_SAFE
 */
 bool Graph::isVisit(CONF conf) {
     shared_lock<shared_timed_mutex> lck(tag_mutex[conf[0]]);
@@ -283,6 +295,7 @@ bool Graph::isVisit(CONF conf) {
 
 /*
     Checks if node k is visited by this key
+    NOTE: THREAD_SAFE
 */
 bool Graph::isnVisit(int k) {
     shared_lock<shared_timed_mutex> lck(univ_tag_mutex);

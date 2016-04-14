@@ -49,7 +49,7 @@ void test2()  {
     conf[2]=~0;
     conf[3]=~0;
 
-    Ant rant ;
+    Ant2 rant ;
 #if defined N8
     cout<<"N8"<<endl;
     rant.setDataset("graph8.dat");
