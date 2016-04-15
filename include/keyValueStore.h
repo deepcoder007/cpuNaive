@@ -19,6 +19,9 @@ public:
     void setValue(CONF key,float val);
     bool keyExist(CONF key);
     int getSize();           // returns the number of keys in container
+
+    // CAUTION : Call these subroutines with care
+    void updateValueRho();  // update the values according to PHERO_RETENTION_RATE for all the keys in all the container
 };
 
 

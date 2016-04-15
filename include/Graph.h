@@ -58,6 +58,11 @@ public:
     bool isValid(CONF key);     // is it a valid configuration 
     int cntVac(CONF key);       // count vacant nodes in configuration
     int containerSize();
+    void updateValueRho()      
+    {
+        // calls the same routine in the underlying keyValueStore
+        storage.updateValueRho();
+    }
 };
 
 #endif

@@ -38,9 +38,30 @@ bool keyValueStore::keyExist(CONF key) {
 }
 
 
+/*
+    Returns the size of this keyValue in terms of number of keys
+*/
 int keyValueStore::getSize() {
     int sz = 0;
     for(int i=1 ; i<= N_VAL ; i++ )
         sz += phero[i].size();
     return sz;
 }
+
+
+/*
+    This is to implement the pheromone drying up rule in the graph
+    The dry up rate is specified in the config.h file
+*/
+void keyValueStore::updateValueRho() {
+
+    for(int i=0 ; i<= N_VAL ; i++ ) {
+        for( auto it = phero[i].begin() ; it != phero[i].end() ; it++ ) {
+            it->second = it->second * PHERO_RETENTION_RATE ;
+            if( it->second < PHERO_MIN )
+                it->second = PHERO_MIN ;
+        }
+    }
+
+}
+

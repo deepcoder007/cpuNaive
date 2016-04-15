@@ -59,11 +59,16 @@
 #define EXPLORE_DIFF 3.0
 
 // Maximum and minimum value of pheromone
-#define PHERO_MAX 100.0
+// The difference between MAX and MIN is potentionally
+// a deciding factor on the performance of the algorithm
+#define PHERO_MAX 1000.0
 #define PHERO_MIN 1.0
 
 // This is the parameter RHO of the ACO
-#define PHERO_RETENTION_RATE 0.90
+// The new phero quantity is RHO times the original quantity
+// after this update
+// NOTE: This is a very sensitive parameter
+#define PHERO_RETENTION_RATE 0.80
 
 // Number of iterations in the AntSystem iterate(), i'th iteration
 // will be i times the base in this system

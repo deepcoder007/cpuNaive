@@ -233,6 +233,29 @@ CMakeFiles/regression.dir/src/AlgoAntSystem.cpp.o.provides: CMakeFiles/regressio
 
 CMakeFiles/regression.dir/src/AlgoAntSystem.cpp.o.provides.build: CMakeFiles/regression.dir/src/AlgoAntSystem.cpp.o
 
+CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.o: CMakeFiles/regression.dir/flags.make
+CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.o: src/AlgoAntSystem2.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/vibhanshu/BTP/cpuNaive/CMakeFiles $(CMAKE_PROGRESS_9)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.o"
+	/home/vibhanshu/installed/llvm/bin/clang++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.o -c /home/vibhanshu/BTP/cpuNaive/src/AlgoAntSystem2.cpp
+
+CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.i"
+	/home/vibhanshu/installed/llvm/bin/clang++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/vibhanshu/BTP/cpuNaive/src/AlgoAntSystem2.cpp > CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.i
+
+CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.s"
+	/home/vibhanshu/installed/llvm/bin/clang++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/vibhanshu/BTP/cpuNaive/src/AlgoAntSystem2.cpp -o CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.s
+
+CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.o.requires:
+.PHONY : CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.o.requires
+
+CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.o.provides: CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.o.requires
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.o.provides.build
+.PHONY : CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.o.provides
+
+CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.o.provides.build: CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.o
+
 # Object files for target regression
 regression_OBJECTS = \
 "CMakeFiles/regression.dir/src/Graph.cpp.o" \
@@ -242,7 +265,8 @@ regression_OBJECTS = \
 "CMakeFiles/regression.dir/src/AlgoRandomAnt.cpp.o" \
 "CMakeFiles/regression.dir/src/AlgoAnt.cpp.o" \
 "CMakeFiles/regression.dir/src/AlgoAnt2.cpp.o" \
-"CMakeFiles/regression.dir/src/AlgoAntSystem.cpp.o"
+"CMakeFiles/regression.dir/src/AlgoAntSystem.cpp.o" \
+"CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.o"
 
 # External object files for target regression
 regression_EXTERNAL_OBJECTS =
@@ -255,6 +279,7 @@ bin/regression: CMakeFiles/regression.dir/src/AlgoRandomAnt.cpp.o
 bin/regression: CMakeFiles/regression.dir/src/AlgoAnt.cpp.o
 bin/regression: CMakeFiles/regression.dir/src/AlgoAnt2.cpp.o
 bin/regression: CMakeFiles/regression.dir/src/AlgoAntSystem.cpp.o
+bin/regression: CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.o
 bin/regression: CMakeFiles/regression.dir/build.make
 bin/regression: CMakeFiles/regression.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable bin/regression"
@@ -272,6 +297,7 @@ CMakeFiles/regression.dir/requires: CMakeFiles/regression.dir/src/AlgoRandomAnt.
 CMakeFiles/regression.dir/requires: CMakeFiles/regression.dir/src/AlgoAnt.cpp.o.requires
 CMakeFiles/regression.dir/requires: CMakeFiles/regression.dir/src/AlgoAnt2.cpp.o.requires
 CMakeFiles/regression.dir/requires: CMakeFiles/regression.dir/src/AlgoAntSystem.cpp.o.requires
+CMakeFiles/regression.dir/requires: CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.o.requires
 .PHONY : CMakeFiles/regression.dir/requires
 
 CMakeFiles/regression.dir/clean:

@@ -11,23 +11,24 @@
 
 using namespace std;
 
-mutex Ant_dist_lock_3;
+mutex Ant_dist_lock_4;
 
 //--------------------------------------------------------------
-//      The "ANT SYSTEM"  implementation
-//      This is the second version of ingenious implementation 
+//      The "ANT SYSTEM 2"  implementation
+//      Int this version we have weight reduction after each 
+//      iteration to allow for exploring newer paths
 //--------------------------------------------------------------
 
 /*
     This will be a standard ACO implementation with multiple ants but without pheromone
 */
 
-void AntSystem::setInit(CONF conf) {
+void AntSystem2::setInit(CONF conf) {
     initConf = conf;
 }
 
 
-void AntSystem::setDataset(string filename) {
+void AntSystem2::setDataset(string filename) {
     datasetName = filename;
 }
 
@@ -35,7 +36,7 @@ void AntSystem::setDataset(string filename) {
 /*
     Removes the configurations which are already visited
 */
-set<pair<CONF,int> > AntSystem::filterCONF(Graph* g,set<pair<CONF,int> > in) {
+set<pair<CONF,int> > AntSystem2::filterCONF(Graph* g,set<pair<CONF,int> > in) {
     set<pair<CONF,int> > out;
     for( auto it = in.begin() ; it!=in.end() ; it++ )
         if( !g->isVisit(it->first) )
@@ -49,7 +50,7 @@ set<pair<CONF,int> > AntSystem::filterCONF(Graph* g,set<pair<CONF,int> > in) {
     curr    : The position of current configuration of ANT
     confSet : configuraiton set of neighbours of atn
 */
-pair<CONF,int> AntSystem::getNextConf( CONF curr, set<pair<CONF,int> >& confSet, Graph* g ) {
+pair<CONF,int> AntSystem2::getNextConf( CONF curr, set<pair<CONF,int> >& confSet, Graph* g ) {
 
     vector<pair<CONF,int> > vConf;  // stores the list of configuration
     vector<int>  vProb;     // stores the probabilities
@@ -89,8 +90,8 @@ pair<CONF,int> AntSystem::getNextConf( CONF curr, set<pair<CONF,int> >& confSet,
 /*
     This is to be invoked by a thread in ANT
 */
-void AntSystem::antThread(Graph* g,
-                CONF initConf, AntSystem* antobj, 
+void AntSystem2::antThread(Graph* g,
+                CONF initConf, AntSystem2* antobj, 
                 map<int,int>* globDist,int maxloopCount) {
 
     set<pair<CONF,int> > confSet;    // the set of configuration nodes
@@ -138,7 +139,7 @@ void AntSystem::antThread(Graph* g,
     }
     // update the global distance matrix in this block
     {
-        lock_guard<mutex> lck( Ant_dist_lock_3 );
+        lock_guard<mutex> lck( Ant_dist_lock_4 );
         for( int i=1 ; i<=n ; i++ )
             (*globDist)[i] = min( dist[i], (*globDist)[i] );
     }
@@ -154,7 +155,7 @@ void AntSystem::antThread(Graph* g,
     2. Multiple iterations as compared to only 1 in Ant2
     3. Weight updating after each iteration 
 */
-void AntSystem::iterate() {
+void AntSystem2::iterate() {
 
     int totVisit = 0 ;
     int i, j, n;
@@ -192,6 +193,10 @@ void AntSystem::iterate() {
             if( g->isnVisit(i) )
                 totVisit++;
         cout<<"Number of nodes visited in iteration : "<<j<<" = "<<totVisit<<endl;
+    
+        // Time to update RHO
+        // value of rho is given in file config.h
+        g->updateValueRho(); 
     }
 
     cout<<" Total visited nodes by robot : "<<totVisit<<endl;

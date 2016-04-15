@@ -7,6 +7,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/regression.dir/src/AlgoAnt.cpp.o"
   "CMakeFiles/regression.dir/src/AlgoAnt2.cpp.o"
   "CMakeFiles/regression.dir/src/AlgoAntSystem.cpp.o"
+  "CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.o"
   "bin/regression.pdb"
   "bin/regression"
 )
