@@ -112,7 +112,7 @@ void AntSystem::antThread(Graph* g,
     int loopCount=0;
     for( loopCount=0 ; loopCount < maxloopCount ; loopCount ++ )
     {
-        cout<<" Loop Number : "<<loopCount<<endl;
+ //       cout<<" Loop Number : "<<loopCount<<endl;
         if( confSet.size() == 0 ) 
             break;
 
@@ -143,41 +143,50 @@ void AntSystem::antThread(Graph* g,
             (*globDist)[i] = min( dist[i], (*globDist)[i] );
     }
 
-    cout<<"Total cost of the current path : "<<curr_cost<<endl;
-    cout<<"Curr thread iteration count : "<<loopCount<<endl;
+//    cout<<"Total cost of the current path : "<<curr_cost<<endl;
+//    cout<<"Curr thread iteration count : "<<loopCount<<endl;
 }
 
 
 void AntSystem::iterate() {
+
+    int totVisit = 0 ;
+    int i, j, n;
+    vector<thread> vthread;    // vector of threads in ACO
+
     srand(time(NULL));
 
     g = new Graph;
     g->readFromFile(datasetName);   // read data from file
-    int n = g->getNodeCnt(); 
+    n = g->getNodeCnt(); 
     
     // initialize the dist structure in the graph
-    for( int i=1 ; i<=n ; i++ )
+    for( i=1 ; i<=n ; i++ )
        dist[i]=1000000000;      // set it to a high number
     dist[ initConf[0] ] = 0;
 
     cout<<"Number of nodes in graph : "<<n<<endl;
 
-    // Spawn other threads from here.
-    vector<thread> vthread;    // vector of threads in ACO
-    for( int i=0 ; i<THD ; i++ )
-        vthread.push_back( (thread(antThread, g, initConf, this, &dist, 10000)) );
+    for( j=1; j <= ANT_SYSTEM_ITERATION ; j++ ) {
 
-    // WAIT FOR THREADS TO COMPLETE THEIR WORK
+        // Spawn other threads from here.
+        for( i=0 ; i<THD ; i++ )
+            vthread.push_back( 
+                (thread(antThread, g, initConf, 
+                this, &dist, j*ANT_SYSTEM_PATH_BASE )) );
 
-    for( int i=0 ; i<THD ; i++ )
-        vthread[i].join();
-    vthread.clear();
+        // WAIT FOR THREADS TO COMPLETE THEIR WORK
 
+        for( i=0 ; i<THD ; i++ )
+            vthread[i].join();
+        vthread.clear();
 
-    int totVisit = 0 ;
-    for( int i=1 ; i<=n ; i++ ) 
-        if( g->isnVisit(i) )
-            totVisit++;
+        totVisit = 0 ;   // initialize this variable
+        for( i=1 ; i<=n ; i++ ) 
+            if( g->isnVisit(i) )
+                totVisit++;
+        cout<<"Number of nodes visited in iteration : "<<j+1<<" = "<<totVisit<<endl;
+    }
 
     cout<<" Total visited nodes by robot : "<<totVisit<<endl;
     cout<<" Visit count : "<<g->visitCnt()<<endl; 

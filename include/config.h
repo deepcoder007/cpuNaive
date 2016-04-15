@@ -65,4 +65,12 @@
 // This is the parameter RHO of the ACO
 #define PHERO_RETENTION_RATE 0.90
 
+// Number of iterations in the AntSystem iterate(), i'th iteration
+// will be i times the base in this system
+#define ANT_SYSTEM_ITERATION 100
+
+// The path length of the first iteration in Ant System 
+#define ANT_SYSTEM_PATH_BASE 10
+
+
 #endif 
