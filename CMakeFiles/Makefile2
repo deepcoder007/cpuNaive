@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/vibhanshu/BTP/cpuNaive
 CMakeFiles/regression.dir/all:
 	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/depend
 	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/vibhanshu/BTP/cpuNaive/CMakeFiles  1 2 3 4 5
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/vibhanshu/BTP/cpuNaive/CMakeFiles  1 2 3 4 5 6 7 8
 	@echo "Built target regression"
 .PHONY : CMakeFiles/regression.dir/all
 
@@ -69,7 +69,7 @@ all: CMakeFiles/regression.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/regression.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/vibhanshu/BTP/cpuNaive/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/vibhanshu/BTP/cpuNaive/CMakeFiles 8
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/regression.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/vibhanshu/BTP/cpuNaive/CMakeFiles 0
 .PHONY : CMakeFiles/regression.dir/rule

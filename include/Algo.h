@@ -7,6 +7,8 @@
 #include<string>
 #include<map>
 
+//mutex Ant_dist_lock;
+
 // This file will contain all the algos that are to be implemented , bruteforce,random ant, ACO, etc.
 
 /*

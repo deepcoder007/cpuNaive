@@ -44,12 +44,26 @@ void writeCONFtoFile(FILE* ptr, Graph* g, CONF conf) {
 void test2()  {
 
     CONF conf;
-    conf[0]=20;
+    conf[0]=60;
     conf[1]=0;
     conf[2]=~0;
     conf[3]=~0;
+    conf[4]=~0;
+    conf[5]=~0;
+    conf[6]=~0;
+    conf[7]=~0;
+    conf[8]=~0;
+    conf[9]=~0;
+    conf[10]=~0;
+    conf[11]=~0;
+    conf[12]=~0;
+    conf[13]=~0;
+    conf[14]=~0;
+    conf[15]=~0;
+    conf[16]=~0;
+    conf[17]=~0;
 
-    Ant2 rant ;
+    AntSystem rant ;
 #if defined N8
     cout<<"N8"<<endl;
     rant.setDataset("graph8.dat");

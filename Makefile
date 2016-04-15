@@ -115,29 +115,101 @@ regression/fast:
 	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/build
 .PHONY : regression/fast
 
-src/Algo.o: src/Algo.cpp.o
-.PHONY : src/Algo.o
+src/AlgoAnt.o: src/AlgoAnt.cpp.o
+.PHONY : src/AlgoAnt.o
 
 # target to build an object file
-src/Algo.cpp.o:
-	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/Algo.cpp.o
-.PHONY : src/Algo.cpp.o
+src/AlgoAnt.cpp.o:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAnt.cpp.o
+.PHONY : src/AlgoAnt.cpp.o
 
-src/Algo.i: src/Algo.cpp.i
-.PHONY : src/Algo.i
+src/AlgoAnt.i: src/AlgoAnt.cpp.i
+.PHONY : src/AlgoAnt.i
 
 # target to preprocess a source file
-src/Algo.cpp.i:
-	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/Algo.cpp.i
-.PHONY : src/Algo.cpp.i
+src/AlgoAnt.cpp.i:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAnt.cpp.i
+.PHONY : src/AlgoAnt.cpp.i
 
-src/Algo.s: src/Algo.cpp.s
-.PHONY : src/Algo.s
+src/AlgoAnt.s: src/AlgoAnt.cpp.s
+.PHONY : src/AlgoAnt.s
 
 # target to generate assembly for a file
-src/Algo.cpp.s:
-	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/Algo.cpp.s
-.PHONY : src/Algo.cpp.s
+src/AlgoAnt.cpp.s:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAnt.cpp.s
+.PHONY : src/AlgoAnt.cpp.s
+
+src/AlgoAnt2.o: src/AlgoAnt2.cpp.o
+.PHONY : src/AlgoAnt2.o
+
+# target to build an object file
+src/AlgoAnt2.cpp.o:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAnt2.cpp.o
+.PHONY : src/AlgoAnt2.cpp.o
+
+src/AlgoAnt2.i: src/AlgoAnt2.cpp.i
+.PHONY : src/AlgoAnt2.i
+
+# target to preprocess a source file
+src/AlgoAnt2.cpp.i:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAnt2.cpp.i
+.PHONY : src/AlgoAnt2.cpp.i
+
+src/AlgoAnt2.s: src/AlgoAnt2.cpp.s
+.PHONY : src/AlgoAnt2.s
+
+# target to generate assembly for a file
+src/AlgoAnt2.cpp.s:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAnt2.cpp.s
+.PHONY : src/AlgoAnt2.cpp.s
+
+src/AlgoAntSystem.o: src/AlgoAntSystem.cpp.o
+.PHONY : src/AlgoAntSystem.o
+
+# target to build an object file
+src/AlgoAntSystem.cpp.o:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAntSystem.cpp.o
+.PHONY : src/AlgoAntSystem.cpp.o
+
+src/AlgoAntSystem.i: src/AlgoAntSystem.cpp.i
+.PHONY : src/AlgoAntSystem.i
+
+# target to preprocess a source file
+src/AlgoAntSystem.cpp.i:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAntSystem.cpp.i
+.PHONY : src/AlgoAntSystem.cpp.i
+
+src/AlgoAntSystem.s: src/AlgoAntSystem.cpp.s
+.PHONY : src/AlgoAntSystem.s
+
+# target to generate assembly for a file
+src/AlgoAntSystem.cpp.s:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAntSystem.cpp.s
+.PHONY : src/AlgoAntSystem.cpp.s
+
+src/AlgoRandomAnt.o: src/AlgoRandomAnt.cpp.o
+.PHONY : src/AlgoRandomAnt.o
+
+# target to build an object file
+src/AlgoRandomAnt.cpp.o:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoRandomAnt.cpp.o
+.PHONY : src/AlgoRandomAnt.cpp.o
+
+src/AlgoRandomAnt.i: src/AlgoRandomAnt.cpp.i
+.PHONY : src/AlgoRandomAnt.i
+
+# target to preprocess a source file
+src/AlgoRandomAnt.cpp.i:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoRandomAnt.cpp.i
+.PHONY : src/AlgoRandomAnt.cpp.i
+
+src/AlgoRandomAnt.s: src/AlgoRandomAnt.cpp.s
+.PHONY : src/AlgoRandomAnt.s
+
+# target to generate assembly for a file
+src/AlgoRandomAnt.cpp.s:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoRandomAnt.cpp.s
+.PHONY : src/AlgoRandomAnt.cpp.s
 
 src/Graph.o: src/Graph.cpp.o
 .PHONY : src/Graph.o
@@ -244,9 +316,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... regression"
-	@echo "... src/Algo.o"
-	@echo "... src/Algo.i"
-	@echo "... src/Algo.s"
+	@echo "... src/AlgoAnt.o"
+	@echo "... src/AlgoAnt.i"
+	@echo "... src/AlgoAnt.s"
+	@echo "... src/AlgoAnt2.o"
+	@echo "... src/AlgoAnt2.i"
+	@echo "... src/AlgoAnt2.s"
+	@echo "... src/AlgoAntSystem.o"
+	@echo "... src/AlgoAntSystem.i"
+	@echo "... src/AlgoAntSystem.s"
+	@echo "... src/AlgoRandomAnt.o"
+	@echo "... src/AlgoRandomAnt.i"
+	@echo "... src/AlgoRandomAnt.s"
 	@echo "... src/Graph.o"
 	@echo "... src/Graph.i"
 	@echo "... src/Graph.s"
