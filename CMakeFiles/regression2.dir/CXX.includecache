@@ -6,21 +6,37 @@
 
 #IncludeRegexTransform: 
 
-/home/vibhanshu/BTP/cpuNaive/src/regression2.cpp
-iostream
--
-cstdio
+/home/vibhanshu/BTP/cpuNaive/src/AlgoAntSystem.cpp
+Algo.h
+/home/vibhanshu/BTP/cpuNaive/src/Algo.h
+ctime
 -
 cstdlib
 -
-unistd.h
+iostream
 -
-fstream
+thread
 -
-sstream
+utility
 -
+random
+-
+
+/home/vibhanshu/BTP/cpuNaive/src/AlgoAntSystem2.cpp
 Algo.h
 /home/vibhanshu/BTP/cpuNaive/src/Algo.h
+ctime
+-
+cstdlib
+-
+iostream
+-
+thread
+-
+utility
+-
+random
+-
 
 include/Algo.h
 Graph.h

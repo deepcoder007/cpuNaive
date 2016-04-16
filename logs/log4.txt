@@ -1,0 +1,46 @@
+TASK:
+    Same configuration as log2
+
+
+-----------------------------------------
+     Start the regression testing        
+-----------------------------------------
+Current directory : /home/vibhanshu/BTP/cpuNaive
+N1024
+file : data/graph1024.dat
+No. of weights : 166396
+Number of nodes in graph : 1024
+Number of nodes visited in iteration : 1 = 1
+Number of nodes visited in iteration : 2 = 1
+Number of nodes visited in iteration : 3 = 10
+Number of nodes visited in iteration : 4 = 12
+Number of nodes visited in iteration : 5 = 16
+Number of nodes visited in iteration : 6 = 18
+Number of nodes visited in iteration : 7 = 18
+Number of nodes visited in iteration : 8 = 27
+Number of nodes visited in iteration : 9 = 27
+Number of nodes visited in iteration : 10 = 42
+Number of nodes visited in iteration : 11 = 48
+Number of nodes visited in iteration : 12 = 56
+Number of nodes visited in iteration : 13 = 62
+Number of nodes visited in iteration : 14 = 67
+Number of nodes visited in iteration : 15 = 86
+Number of nodes visited in iteration : 16 = 90
+Number of nodes visited in iteration : 17 = 101
+Number of nodes visited in iteration : 18 = 106
+Number of nodes visited in iteration : 19 = 110
+Number of nodes visited in iteration : 20 = 114
+Number of nodes visited in iteration : 21 = 115
+Number of nodes visited in iteration : 22 = 118
+Number of nodes visited in iteration : 23 = 122
+Number of nodes visited in iteration : 24 = 138
+Number of nodes visited in iteration : 25 = 138
+Number of nodes visited in iteration : 26 = 157
+Number of nodes visited in iteration : 27 = 173
+Number of nodes visited in iteration : 28 = 173
+Number of nodes visited in iteration : 29 = 177
+Number of nodes visited in iteration : 30 = 185
+Number of nodes visited in iteration : 31 = 207
+Number of nodes visited in iteration : 32 = 221
+Number of nodes visited in iteration : 33 = 221
+Number of nodes visited in iteration : 34 = 225

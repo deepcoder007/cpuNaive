@@ -192,8 +192,15 @@ void AntSystem::iterate() {
             if( g->isnVisit(i) )
                 totVisit++;
         cout<<"Number of nodes visited in iteration : "<<j<<" = "<<totVisit<<endl;
+        cout<<" Visit count : "<<g->visitCnt()<<endl; 
+        for( auto it = dist.begin() ; it!= dist.end() ; it++ )
+            cout<<it->second<<" , ";
+
+        cout<<endl;
     }
 
+    cout<<"-----------------------------------------------------------"<<endl;
+    cout<<"FINAL Tally : "<<endl;
     cout<<" Total visited nodes by robot : "<<totVisit<<endl;
     cout<<" Visit count : "<<g->visitCnt()<<endl; 
     for( auto it = dist.begin() ; it!= dist.end() ; it++ )
