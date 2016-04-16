@@ -103,6 +103,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named regression
+
+# Build rule for target.
+regression: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 regression
+.PHONY : regression
+
+# fast build rule for target.
+regression/fast:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/build
+.PHONY : regression/fast
+
+#=============================================================================
 # Target rules for targets named regression2
 
 # Build rule for target.
@@ -120,6 +133,7 @@ src/AlgoAnt.o: src/AlgoAnt.cpp.o
 
 # target to build an object file
 src/AlgoAnt.cpp.o:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAnt.cpp.o
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/AlgoAnt.cpp.o
 .PHONY : src/AlgoAnt.cpp.o
 
@@ -128,6 +142,7 @@ src/AlgoAnt.i: src/AlgoAnt.cpp.i
 
 # target to preprocess a source file
 src/AlgoAnt.cpp.i:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAnt.cpp.i
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/AlgoAnt.cpp.i
 .PHONY : src/AlgoAnt.cpp.i
 
@@ -136,6 +151,7 @@ src/AlgoAnt.s: src/AlgoAnt.cpp.s
 
 # target to generate assembly for a file
 src/AlgoAnt.cpp.s:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAnt.cpp.s
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/AlgoAnt.cpp.s
 .PHONY : src/AlgoAnt.cpp.s
 
@@ -144,6 +160,7 @@ src/AlgoAnt2.o: src/AlgoAnt2.cpp.o
 
 # target to build an object file
 src/AlgoAnt2.cpp.o:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAnt2.cpp.o
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/AlgoAnt2.cpp.o
 .PHONY : src/AlgoAnt2.cpp.o
 
@@ -152,6 +169,7 @@ src/AlgoAnt2.i: src/AlgoAnt2.cpp.i
 
 # target to preprocess a source file
 src/AlgoAnt2.cpp.i:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAnt2.cpp.i
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/AlgoAnt2.cpp.i
 .PHONY : src/AlgoAnt2.cpp.i
 
@@ -160,6 +178,7 @@ src/AlgoAnt2.s: src/AlgoAnt2.cpp.s
 
 # target to generate assembly for a file
 src/AlgoAnt2.cpp.s:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAnt2.cpp.s
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/AlgoAnt2.cpp.s
 .PHONY : src/AlgoAnt2.cpp.s
 
@@ -168,6 +187,7 @@ src/AlgoAntSystem.o: src/AlgoAntSystem.cpp.o
 
 # target to build an object file
 src/AlgoAntSystem.cpp.o:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAntSystem.cpp.o
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/AlgoAntSystem.cpp.o
 .PHONY : src/AlgoAntSystem.cpp.o
 
@@ -176,6 +196,7 @@ src/AlgoAntSystem.i: src/AlgoAntSystem.cpp.i
 
 # target to preprocess a source file
 src/AlgoAntSystem.cpp.i:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAntSystem.cpp.i
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/AlgoAntSystem.cpp.i
 .PHONY : src/AlgoAntSystem.cpp.i
 
@@ -184,6 +205,7 @@ src/AlgoAntSystem.s: src/AlgoAntSystem.cpp.s
 
 # target to generate assembly for a file
 src/AlgoAntSystem.cpp.s:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAntSystem.cpp.s
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/AlgoAntSystem.cpp.s
 .PHONY : src/AlgoAntSystem.cpp.s
 
@@ -192,6 +214,7 @@ src/AlgoAntSystem2.o: src/AlgoAntSystem2.cpp.o
 
 # target to build an object file
 src/AlgoAntSystem2.cpp.o:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.o
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/AlgoAntSystem2.cpp.o
 .PHONY : src/AlgoAntSystem2.cpp.o
 
@@ -200,6 +223,7 @@ src/AlgoAntSystem2.i: src/AlgoAntSystem2.cpp.i
 
 # target to preprocess a source file
 src/AlgoAntSystem2.cpp.i:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.i
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/AlgoAntSystem2.cpp.i
 .PHONY : src/AlgoAntSystem2.cpp.i
 
@@ -208,6 +232,7 @@ src/AlgoAntSystem2.s: src/AlgoAntSystem2.cpp.s
 
 # target to generate assembly for a file
 src/AlgoAntSystem2.cpp.s:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.s
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/AlgoAntSystem2.cpp.s
 .PHONY : src/AlgoAntSystem2.cpp.s
 
@@ -216,6 +241,7 @@ src/AlgoRandomAnt.o: src/AlgoRandomAnt.cpp.o
 
 # target to build an object file
 src/AlgoRandomAnt.cpp.o:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoRandomAnt.cpp.o
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/AlgoRandomAnt.cpp.o
 .PHONY : src/AlgoRandomAnt.cpp.o
 
@@ -224,6 +250,7 @@ src/AlgoRandomAnt.i: src/AlgoRandomAnt.cpp.i
 
 # target to preprocess a source file
 src/AlgoRandomAnt.cpp.i:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoRandomAnt.cpp.i
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/AlgoRandomAnt.cpp.i
 .PHONY : src/AlgoRandomAnt.cpp.i
 
@@ -232,6 +259,7 @@ src/AlgoRandomAnt.s: src/AlgoRandomAnt.cpp.s
 
 # target to generate assembly for a file
 src/AlgoRandomAnt.cpp.s:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/AlgoRandomAnt.cpp.s
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/AlgoRandomAnt.cpp.s
 .PHONY : src/AlgoRandomAnt.cpp.s
 
@@ -240,6 +268,7 @@ src/Graph.o: src/Graph.cpp.o
 
 # target to build an object file
 src/Graph.cpp.o:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/Graph.cpp.o
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/Graph.cpp.o
 .PHONY : src/Graph.cpp.o
 
@@ -248,6 +277,7 @@ src/Graph.i: src/Graph.cpp.i
 
 # target to preprocess a source file
 src/Graph.cpp.i:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/Graph.cpp.i
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/Graph.cpp.i
 .PHONY : src/Graph.cpp.i
 
@@ -256,6 +286,7 @@ src/Graph.s: src/Graph.cpp.s
 
 # target to generate assembly for a file
 src/Graph.cpp.s:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/Graph.cpp.s
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/Graph.cpp.s
 .PHONY : src/Graph.cpp.s
 
@@ -264,6 +295,7 @@ src/debug.o: src/debug.cpp.o
 
 # target to build an object file
 src/debug.cpp.o:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/debug.cpp.o
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/debug.cpp.o
 .PHONY : src/debug.cpp.o
 
@@ -272,6 +304,7 @@ src/debug.i: src/debug.cpp.i
 
 # target to preprocess a source file
 src/debug.cpp.i:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/debug.cpp.i
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/debug.cpp.i
 .PHONY : src/debug.cpp.i
 
@@ -280,6 +313,7 @@ src/debug.s: src/debug.cpp.s
 
 # target to generate assembly for a file
 src/debug.cpp.s:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/debug.cpp.s
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/debug.cpp.s
 .PHONY : src/debug.cpp.s
 
@@ -288,6 +322,7 @@ src/keyValueStore.o: src/keyValueStore.cpp.o
 
 # target to build an object file
 src/keyValueStore.cpp.o:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/keyValueStore.cpp.o
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/keyValueStore.cpp.o
 .PHONY : src/keyValueStore.cpp.o
 
@@ -296,6 +331,7 @@ src/keyValueStore.i: src/keyValueStore.cpp.i
 
 # target to preprocess a source file
 src/keyValueStore.cpp.i:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/keyValueStore.cpp.i
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/keyValueStore.cpp.i
 .PHONY : src/keyValueStore.cpp.i
 
@@ -304,6 +340,7 @@ src/keyValueStore.s: src/keyValueStore.cpp.s
 
 # target to generate assembly for a file
 src/keyValueStore.cpp.s:
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/keyValueStore.cpp.s
 	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/keyValueStore.cpp.s
 .PHONY : src/keyValueStore.cpp.s
 
@@ -312,7 +349,7 @@ src/regression.o: src/regression.cpp.o
 
 # target to build an object file
 src/regression.cpp.o:
-	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/regression.cpp.o
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/regression.cpp.o
 .PHONY : src/regression.cpp.o
 
 src/regression.i: src/regression.cpp.i
@@ -320,7 +357,7 @@ src/regression.i: src/regression.cpp.i
 
 # target to preprocess a source file
 src/regression.cpp.i:
-	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/regression.cpp.i
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/regression.cpp.i
 .PHONY : src/regression.cpp.i
 
 src/regression.s: src/regression.cpp.s
@@ -328,8 +365,32 @@ src/regression.s: src/regression.cpp.s
 
 # target to generate assembly for a file
 src/regression.cpp.s:
-	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/regression.cpp.s
+	$(MAKE) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/src/regression.cpp.s
 .PHONY : src/regression.cpp.s
+
+src/regression2.o: src/regression2.cpp.o
+.PHONY : src/regression2.o
+
+# target to build an object file
+src/regression2.cpp.o:
+	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/regression2.cpp.o
+.PHONY : src/regression2.cpp.o
+
+src/regression2.i: src/regression2.cpp.i
+.PHONY : src/regression2.i
+
+# target to preprocess a source file
+src/regression2.cpp.i:
+	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/regression2.cpp.i
+.PHONY : src/regression2.cpp.i
+
+src/regression2.s: src/regression2.cpp.s
+.PHONY : src/regression2.s
+
+# target to generate assembly for a file
+src/regression2.cpp.s:
+	$(MAKE) -f CMakeFiles/regression2.dir/build.make CMakeFiles/regression2.dir/src/regression2.cpp.s
+.PHONY : src/regression2.cpp.s
 
 # Help Target
 help:
@@ -339,6 +400,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... regression"
 	@echo "... regression2"
 	@echo "... src/AlgoAnt.o"
 	@echo "... src/AlgoAnt.i"
@@ -367,6 +429,9 @@ help:
 	@echo "... src/regression.o"
 	@echo "... src/regression.i"
 	@echo "... src/regression.s"
+	@echo "... src/regression2.o"
+	@echo "... src/regression2.i"
+	@echo "... src/regression2.s"
 .PHONY : help
 
 

@@ -1,5 +1,5 @@
-#ifndef GRAPH
-#define GRAPH
+#ifndef GRAPH_H
+#define GRAPH_H
 
 #include<string>
 #include<vector>
@@ -18,13 +18,9 @@
 
 #if defined UNORDERED
 
-unsigned long hashPAIRI2( pair<int,int> key ) {
-    return (key.first*key.second)%INT_MAX; 
-}
+unsigned long hashPAIRI2( pair<int,int> key ); 
 
-bool equalPAIRI2( pair<int,int> key1, pair<int,int> key2 ) {
-    return ( key1.first == key2.first && key1.second == key2.second );
-}
+bool equalPAIRI2( pair<int,int> key1, pair<int,int> key2 );
 
 #endif
 
@@ -47,7 +43,7 @@ private:
                   float, 
                   function<unsigned long(pair<int,int>)>, 
                   function<bool(pair<int,int>,pair<int,int>)> > 
-                  gweight( PAIR_HASH_BUCKET_COUNT, hashPAIRI2, equalPAIRI2 );
+                  gweight ;
 #else 
     map<pair<int,int>, float> gweight;   // weight of edges in underlying g
 #endif
@@ -65,6 +61,9 @@ private:
     bool gAdjacent(int x,int y);
     vector<int> gNeighbors(int x);
 public:
+#if defined UNORDERED
+    Graph() : gweight( PAIR_HASH_BUCKET_COUNT, hashPAIRI2, equalPAIRI2 ) {}
+#endif
     void readFromFile(string name); // read from file in `data` directory
     set<pair<CONF,int> > getNeighbour(CONF conf); // neighbours of this configuration , along with the cost of each configuration
     bool isNeighbour(CONF conf1,CONF conf2); // are they neighbouring

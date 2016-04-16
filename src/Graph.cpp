@@ -12,6 +12,20 @@
 using namespace std;
 
 
+#if defined UNORDERED
+
+unsigned long hashPAIRI2( pair<int,int> key ) {
+    return (key.first*key.second)%INT_MAX; 
+}
+
+bool equalPAIRI2( pair<int,int> key1, pair<int,int> key2 ) {
+    return ( key1.first == key2.first && key1.second == key2.second );
+}
+
+#endif
+
+
+
 // Function to split the string by the given delimiter
 // NOTE:  THREAD_SAFE
 vector<string> split(string str, char delimiter=' ') {

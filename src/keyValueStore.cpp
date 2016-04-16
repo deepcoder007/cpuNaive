@@ -14,6 +14,26 @@
 using namespace std;
 
 
+#if defined UNORDERED
+
+unsigned long hashCONF( CONF key ) {
+    unsigned long hash=0;
+    for( int i=1 ; i<KEY_SZ ; i++ ) {
+        hash = ( hash + key[i] )%INT_MAX;
+    }
+    return ( hash * key[0] )%INT_MAX;
+}
+
+bool equalCONF( CONF key1 , CONF key2 ) {
+    for( int i=0 ; i<KEY_SZ ; i++ ) 
+        if( key1[i] != key2[i] )
+            return false;
+    return true;
+}
+
+#endif
+
+
 // TODO: check if the case of no key can be changed
 float keyValueStore::getValue(CONF key) {
     if( phero[key[0]].find(key) != phero[key[0]].end() ) {

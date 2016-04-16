@@ -5,6 +5,8 @@
 #include<array>
 #include<utility>
 #include<climits>
+#include<algorithm>
+#include<vector>
 
 #if defined UNORDERED
     #include<unordered_map> 
@@ -20,20 +22,9 @@ typedef array<int,KEY_SZ> CONF;
 // Otherwise this section of code is not required
 #if defined UNORDERED
 
-unsigned long hashCONF( CONF key ) {
-    unsigned long hash=0;
-    for( int i=1 ; i<KEY_SZ ; i++ ) {
-        hash = ( hash + key[i] )%INT_MAX;
-    }
-    return ( hash * key[0] )%INT_MAX;
-}
+unsigned long hashCONF( CONF key ); 
 
-bool equalCONF( CONF key1 , CONF key2 ) {
-    for( int i=0 ; i<KEY_SZ ; i++ ) 
-        if( key1[i] != key2[i] )
-            return false;
-    return true;
-}
+bool equalCONF( CONF key1 , CONF key2 );
 
 #endif
 
@@ -42,16 +33,26 @@ class keyValueStore
 {
 private:
 #if defined UNORDERED
-    unordered_map<CONF,
-                float, 
-                function<unsigned long(CONF)>, 
-                function<bool(CONF,CONF)> > 
-                phero(CONF_HASH_BUCKET_COUNT, hashCONF, equalCONF )[N_VAL+1];
+//    unordered_map<CONF, float, function<unsigned long(CONF)>, function<bool(CONF,CONF)> >  phero[N_VAL+1];
+    vector<unordered_map<CONF, 
+                    float, 
+                    function<unsigned long(CONF)>, 
+                    function<bool(CONF,CONF)> > >  phero;
 #else 
     map<CONF,float > phero[N_VAL+1];  
 #endif
 public:
-    keyValueStore() {}
+    keyValueStore() {
+#if defined UNORDERED
+        phero.reserve(N_VAL+1);   // changes the capacity of the vector
+        for( int i=0; i<=N_VAL ; i++ )
+            phero.push_back( unordered_map<CONF,
+                   float,
+                   function<unsigned long(CONF)>,
+                   function<bool(CONF,CONF)> > 
+                   (CONF_HASH_BUCKET_COUNT,hashCONF,equalCONF) ); 
+#endif
+    }
     float getValue(CONF key);
     void setValue(CONF key,float val);
     bool keyExist(CONF key);
