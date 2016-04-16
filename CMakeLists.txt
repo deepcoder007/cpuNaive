@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.6)
 project(CPUNAIVE)
 
-set(CMAKE_CXX_FLAGS "-std=c++1y -g -pthread -DDEBUG -DN1024")
+set(CMAKE_CXX_FLAGS "-std=c++1y -g -pthread -DDEBUG -DN1024 -DUNORDERED")
 include_directories(${PROJECT_BINARY_DIR}/include)
 include_directories(${CPUNAIVE_SOURCE_DIR}/include)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)

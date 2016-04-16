@@ -9,6 +9,26 @@
 #include<shared_mutex>
 #include"keyValueStore.h"
 #include"config.h"
+#if defined UNORDERED
+    #include<unordered_map>
+    #include<functional>
+#else
+    #include<map>
+#endif
+
+#if defined UNORDERED
+
+unsigned long hashPAIRI2( pair<int,int> key ) {
+    return (key.first*key.second)%INT_MAX; 
+}
+
+bool equalPAIRI2( pair<int,int> key1, pair<int,int> key2 ) {
+    return ( key1.first == key2.first && key1.second == key2.second );
+}
+
+#endif
+
+
 /*
     NOTE : Graph will have nodes starting from 1, in bitset this factor 
     should be considered to avoid wastage of space.
@@ -22,7 +42,15 @@ private:
     //int grid[100][100];    // to store the adjacency matrix of underlying graph
 //    map<int,set<int> > mgrid;  // an adjacency list for grid
     set<int> mgrid[N_VAL+1];   // an adjacency list for grid
+#if defined UNORDERED
+    unordered_map<pair<int,int>, 
+                  float, 
+                  function<unsigned long(pair<int,int>)>, 
+                  function<bool(pair<int,int>,pair<int,int>)> > 
+                  gweight( PAIR_HASH_BUCKET_COUNT, hashPAIRI2, equalPAIRI2 );
+#else 
     map<pair<int,int>, float> gweight;   // weight of edges in underlying g
+#endif
     
     keyValueStore storage;   // to store the pheromone content
     set<CONF> visited[N_VAL+1];       // to store the visited configuration nodes

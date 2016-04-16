@@ -11,6 +11,12 @@
 // Number of bits to be packed in an integer
 #define INT_SZ 30
 
+// Number of hashbuckets in the unordered CONF container
+#define CONF_HASH_BUCKET_COUNT 100
+
+// Number of hashbuckets in unordered pair<int,int> container
+#define PAIR_HASH_BUCKET_COUNT 100
+
 /*
     N_VAL  : The number of nodes in the graph
     KEY_SZ : The size of the key which includes position of robot and bits
