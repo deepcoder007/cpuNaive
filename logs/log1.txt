@@ -1,3 +1,7 @@
+TASK:
+This was ANT SYSTEM ,without the updating of weights at the end of iteration
+
+
 -----------------------------------------
      Start the regression testing        
 -----------------------------------------

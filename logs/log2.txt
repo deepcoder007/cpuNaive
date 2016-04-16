@@ -1,3 +1,6 @@
+TASK:
+This is ANT System 2 , with decreasing of existing weights at the end of iteration
+
 -----------------------------------------
      Start the regression testing        
 -----------------------------------------
