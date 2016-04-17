@@ -136,9 +136,10 @@ void AntSystem3::antThread(Graph* g,
         curr = getNextConf( curr.first, confSet, g );
 
         Cvisited.insert( curr.first );   // insert this in the list of visited nodes
-        Cvisited.insert( curr.first[0] );   // insert this in the list of visited robot positions
+        Cnvisited.insert( curr.first[0] );   // insert this in the list of visited robot positions
 
 
+        // CAUTION : possible point of bug
         if( !g->existPhero( curr.first) )
             g->setPhero( curr.first , PHERO_MAX );
 
@@ -152,8 +153,8 @@ void AntSystem3::antThread(Graph* g,
     // calculate the deltas for CONF's on this path
     // and push those deltas to the phero data structure in the graph
     {
-        int nCvisited = Cvisited.clear();
-        int nCnvisited = Cnvisited.clear();
+        int nCvisited = Cvisited.size();
+        int nCnvisited = Cnvisited.size();
 
         // we don't need deltaStore to be thread safe because it is accessed only by the current thread
         keyValueStore deltaStore;  
@@ -170,8 +171,8 @@ void AntSystem3::antThread(Graph* g,
             // NOTE : check the value of DELTA_CONST before running this simulation
             //        This is to ensure that [delta] is not too high or low
             deltaTmp = DELTA_CONST*( g->getPhero(*it) ) ;          // the base line
-            deltaTmp *= nCnvisited.size();              // the number of visited roboPos increases the value
-            deltaTmp /= nCvisited.size();               // the total number of visited roboPos decrease the value
+            deltaTmp *= Cnvisited.size();              // the number of visited roboPos increases the value
+            deltaTmp /= Cvisited.size();               // the total number of visited roboPos decrease the value
             deltaTmp *= g->getPhero(prevConf) ;        // the delta of the previous node of the graph
 
             g->addPhero( *it, deltaTmp );
@@ -187,7 +188,7 @@ void AntSystem3::antThread(Graph* g,
 
     // update the global distance matrix in this block
     {
-        lock_guard<mutex> lck( Ant_dist_lock_4 );
+        lock_guard<mutex> lck( Ant_dist_lock_5 );
         for( int i=1 ; i<=n ; i++ )
             (*globDist)[i] = min( dist[i], (*globDist)[i] );
     }
