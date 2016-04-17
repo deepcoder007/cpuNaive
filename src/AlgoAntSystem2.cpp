@@ -129,7 +129,11 @@ void AntSystem2::antThread(Graph* g,
         //curr = *it;  // set the current value of configuration
 
         curr = getNextConf( curr.first, confSet, g );
-        g->setPhero( curr.first , PHERO_MAX );
+
+        // call this if 'curr' is already not in the list
+        // IMP: This small bug gave me a lot of pain and inaccurate results
+        if( !g->existPhero( curr.first ) )
+            g->setPhero( curr.first , PHERO_MAX );
 
         curr_cost += curr.second;   // add the cost of this node
         dist[ curr.first[0] ] = min( dist[curr.first[0]], curr_cost );

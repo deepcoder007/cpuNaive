@@ -70,6 +70,7 @@ public:
 
     float getPhero(CONF conf);  // pheromone content  
     bool setPhero(CONF conf, float value);
+    bool addPhero(CONF conf, float value);    // add the 'value' over the existing value 
     bool existPhero(CONF conf);   //checks if the Pheromone exist for current
     int getNodeCnt();       // returns the number of nodes in the graph
 

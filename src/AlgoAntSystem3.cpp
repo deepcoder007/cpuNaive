@@ -1,7 +1,6 @@
 //#include"keyValueStore.h"
-//#include"Graph.h"
 #include"Algo.h"
-//#include"debug.h"
+#include"keyValueStore.h"
 #include<ctime>
 #include<cstdlib>
 #include<iostream>
@@ -99,6 +98,12 @@ void AntSystem3::antThread(Graph* g,
     int tmp1,tmp2;
     int n = g->getNodeCnt(); 
     int curr_cost = 0 ;         // records the cost of the current path
+
+    // The variables below are used to save the path and other info about the path
+    // to store teh per node increment of the nodes
+    // these 2 variables below will be used to calculate the delta
+    set<CONF> Cvisited;          // a list of visited configurations in the current path
+    set<int>  Cnvisited;         // a list of nodes visited by the robot in current path
     
     map<int,int> dist;
     // initialize the dist structure in the graph
@@ -129,7 +134,13 @@ void AntSystem3::antThread(Graph* g,
         //curr = *it;  // set the current value of configuration
 
         curr = getNextConf( curr.first, confSet, g );
-        g->setPhero( curr.first , PHERO_MAX );
+
+        Cvisited.insert( curr.first );   // insert this in the list of visited nodes
+        Cvisited.insert( curr.first[0] );   // insert this in the list of visited robot positions
+
+
+        if( !g->existPhero( curr.first) )
+            g->setPhero( curr.first , PHERO_MAX );
 
         curr_cost += curr.second;   // add the cost of this node
         dist[ curr.first[0] ] = min( dist[curr.first[0]], curr_cost );
@@ -137,6 +148,43 @@ void AntSystem3::antThread(Graph* g,
         confSet = filterCONF( g, g->getNeighbour( curr.first ) );  
 
     }
+
+    // calculate the deltas for CONF's on this path
+    // and push those deltas to the phero data structure in the graph
+    {
+        int nCvisited = Cvisited.clear();
+        int nCnvisited = Cnvisited.clear();
+
+        // we don't need deltaStore to be thread safe because it is accessed only by the current thread
+        keyValueStore deltaStore;  
+        float deltaTmp;                  // the temporary value of delta 
+
+        // the configuration of the previous node of the graph, in this case it is the first node
+        CONF prevConf = initConf;                  
+
+        // deltaStore
+        for( auto it = Cvisited.begin() ; it != Cvisited.end() ; it++ ) {
+
+            //      the weights will be calculated like
+            //      w_(t+1) = w_(t)*( 1 + [delta] )
+            // NOTE : check the value of DELTA_CONST before running this simulation
+            //        This is to ensure that [delta] is not too high or low
+            deltaTmp = DELTA_CONST*( g->getPhero(*it) ) ;          // the base line
+            deltaTmp *= nCnvisited.size();              // the number of visited roboPos increases the value
+            deltaTmp /= nCvisited.size();               // the total number of visited roboPos decrease the value
+            deltaTmp *= g->getPhero(prevConf) ;        // the delta of the previous node of the graph
+
+            g->addPhero( *it, deltaTmp );
+            if( deltaStore.keyExist( *it ) ) 
+                deltaStore.addValue( *it, deltaTmp );
+            else
+                deltaStore.setValue( *it, deltaTmp );
+            
+            prevConf = *it ;                // update the value of prevConf to the current value
+        }
+
+    }
+
     // update the global distance matrix in this block
     {
         lock_guard<mutex> lck( Ant_dist_lock_4 );

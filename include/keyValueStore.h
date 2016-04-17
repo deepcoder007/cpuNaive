@@ -55,11 +55,15 @@ public:
     }
     float getValue(CONF key);
     void setValue(CONF key,float val);
+    void addValue(CONF key,float val);      // first check if exist and only then add the value
     bool keyExist(CONF key);
     int getSize();           // returns the number of keys in container
 
     // CAUTION : Call these subroutines with care
     void updateValueRho();  // update the values according to PHERO_RETENTION_RATE for all the keys in all the container
+
+    // CAUTION: The clear() subroutine is not threadsafe and hence should be called with care
+    void clear();
 };
 
 

@@ -84,4 +84,10 @@
 #define ANT_SYSTEM_PATH_BASE 10
 
 
+// The constant used while updating the value of pheromone
+// keep it in the range 100-500 because intuitively 
+// this is range of value will give optimal result
+#define DELTA_CONST 10.0
+
+
 #endif 

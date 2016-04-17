@@ -44,6 +44,7 @@ float keyValueStore::getValue(CONF key) {
 }
 
 
+// The the value of key
 void keyValueStore::setValue(CONF key,float val) {
     phero[key[0]][key]=val;
 }
@@ -83,5 +84,20 @@ void keyValueStore::updateValueRho() {
         }
     }
 
+}
+
+// Increments the value of key
+void keyValueStore::addValue(CONF key,float val) {
+    if( phero[key[0]].find(key) != phero[key[0]].end() )
+        phero[key[0]][key] += val;
+    else 
+        phero[key[0]][key] = val ;          // if key does not already exist , simply initialize it
+}
+
+
+// Clears the container manually to avoid memory leakage
+void keyValueStore::clear() {
+    for( auto it = phero.begin() ; it != phero.end() ; it++ )
+        it->clear();
 }
 

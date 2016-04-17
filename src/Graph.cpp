@@ -271,9 +271,42 @@ float Graph::getPhero(CONF conf) {
     NOTE: THREAD_SAFE
 */
 bool Graph::setPhero(CONF conf, float value) {
+
     // lock before doing this
+    if( value < PHERO_MIN )
+        value = PHERO_MIN;
+    else if( value > PHERO_MAX )
+        value = PHERO_MAX;
+
     unique_lock<shared_timed_mutex> lck(phero_mutex[conf[0]]);
     storage.setValue(conf, value);
+    return true;
+}
+
+/*
+    Adds to the value of pheromone in the graph
+    NOTE: THREAD_SAFE
+*/
+bool Graph::addPhero(CONF conf, float value) {
+
+    // lock before doing this
+    // retrieve the old value of phero first
+    unique_lock<shared_timed_mutex> lck(phero_mutex[conf[0]]);
+    float curr_tmp = storage.getValue(conf);
+    if( curr_tmp == -1 ) {
+        if( value < PHERO_MIN )
+            value = PHERO_MIN;
+        else if( value > PHERO_MAX )
+            value = PHERO_MAX;
+        storage.setValue(conf, value);
+    } else {
+        value = value + curr_tmp;
+        if( value < PHERO_MIN )
+            value = PHERO_MIN;
+        else if( value > PHERO_MAX )
+            value = PHERO_MAX;
+        storage.setValue(conf, value);
+    }
     return true;
 }
 

@@ -145,7 +145,7 @@ public:
 /*
     In addition to ant system we have pheromone update rule here
     The pheromone of the discovered nodes will get reduced with time
-    In addition to AntSystem2 , the weight will also increment 
+    In addition to AntSystem2 , the weight will also increment according to greedy mechanism
 */
 class AntSystem3 : public Algo
 {
