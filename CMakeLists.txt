@@ -14,7 +14,9 @@ add_executable(regression
                 src/AlgoAnt.cpp 
                 src/AlgoAnt2.cpp 
                 src/AlgoAntSystem.cpp
-                src/AlgoAntSystem2.cpp)
+                src/AlgoAntSystem2.cpp
+                src/AlgoAntSysmte3.cpp
+                )
 
 add_executable(regression2 
                 src/regression2.cpp 
@@ -25,7 +27,9 @@ add_executable(regression2
                 src/AlgoAnt.cpp 
                 src/AlgoAnt2.cpp 
                 src/AlgoAntSystem.cpp
-                src/AlgoAntSystem2.cpp)
+                src/AlgoAntSystem2.cpp
+                src/AlgoAntSystem3.cpp
+                )
 
 add_executable(regression3 
                 src/regression3.cpp 
@@ -36,5 +40,7 @@ add_executable(regression3
                 src/AlgoAnt.cpp 
                 src/AlgoAnt2.cpp 
                 src/AlgoAntSystem.cpp
-                src/AlgoAntSystem2.cpp)
+                src/AlgoAntSystem2.cpp
+                src/AlgoAntSystem3.cpp
+                )
 

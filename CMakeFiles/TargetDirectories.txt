@@ -1,2 +1,0 @@
-/home/vibhanshu/BTP/cpuNaive/CMakeFiles/regression.dir
-/home/vibhanshu/BTP/cpuNaive/CMakeFiles/regression2.dir
