@@ -74,7 +74,7 @@
 // The new phero quantity is RHO times the original quantity
 // after this update
 // NOTE: This is a very sensitive parameter
-#define PHERO_RETENTION_RATE 0.80
+#define PHERO_RETENTION_RATE 0.60
 
 // Number of iterations in the AntSystem iterate(), i'th iteration
 // will be i times the base in this system
