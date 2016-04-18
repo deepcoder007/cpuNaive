@@ -1,3 +1,8 @@
+TASK:
+    The execution of AnySystem1 i.e. choosing next node randomly in the path
+    a node is marked visited and is never visited again in the next iteration
+
+
 -----------------------------------------
      Start the regression testing        
 -----------------------------------------

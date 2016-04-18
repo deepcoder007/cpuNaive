@@ -107,6 +107,8 @@ pair<CONF,int> AntSystem4::getNextConf( CONF curr, set<pair<CONF,int> >& confSet
         // print only when it is because of random number generation
         if( vConf1.size() > 0 )
             cout<<__LINE__<<" : Choose path 2 "<<endl;
+        else 
+            cout<<"  : Choose path 2 but because vConf1 (pheromone neighbourhood) size is 0 "<<endl;
 
         int tmp1 = rand() % vConf2.size() ;  // decide the next node to visit
         return vConf2 [ tmp1 ] ;
