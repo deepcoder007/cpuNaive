@@ -31,6 +31,13 @@ CMakeFiles/regression2.dir/src/AlgoAntSystem3.cpp.o: include/Graph.h
 CMakeFiles/regression2.dir/src/AlgoAntSystem3.cpp.o: include/config.h
 CMakeFiles/regression2.dir/src/AlgoAntSystem3.cpp.o: include/keyValueStore.h
 
+CMakeFiles/regression2.dir/src/AlgoAntSystem4.cpp.o: src/AlgoAntSystem4.cpp
+CMakeFiles/regression2.dir/src/AlgoAntSystem4.cpp.o: include/Algo.h
+CMakeFiles/regression2.dir/src/AlgoAntSystem4.cpp.o: include/Graph.h
+CMakeFiles/regression2.dir/src/AlgoAntSystem4.cpp.o: include/config.h
+CMakeFiles/regression2.dir/src/AlgoAntSystem4.cpp.o: include/debug.h
+CMakeFiles/regression2.dir/src/AlgoAntSystem4.cpp.o: include/keyValueStore.h
+
 CMakeFiles/regression2.dir/src/AlgoRandomAnt.cpp.o: src/AlgoRandomAnt.cpp
 CMakeFiles/regression2.dir/src/AlgoRandomAnt.cpp.o: include/Algo.h
 CMakeFiles/regression2.dir/src/AlgoRandomAnt.cpp.o: include/Graph.h

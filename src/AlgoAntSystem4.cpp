@@ -1,6 +1,7 @@
 //#include"keyValueStore.h"
 #include"Algo.h"
 #include"keyValueStore.h"
+#include"debug.h"
 #include<ctime>
 #include<cstdlib>
 #include<iostream>
@@ -91,15 +92,22 @@ pair<CONF,int> AntSystem4::getNextConf( CONF curr, set<pair<CONF,int> >& confSet
     random_device rd_n;
     discrete_distribution<int> dist_n = { 1, 1 , 1, 1 };
     
-    // TODO : as of now CASE 1 will happend 75 % of time 
+    // TODO : as of now CASE 1 will happen 75 % of time 
     //        better tune this whole algorithm
-    if( dist_n(rd_n) != 0 ) {  
+    if( dist_n(rd_n) != 0 && vConf1.size() > 0 ) {  
+        //  NOTE: enter this loop only where there is atleast 1 visited node
         //  CASE 1 :take the already visited node
+        cout<<__LINE__<<" : Choose path 1 "<<endl;
         random_device rd;
         discrete_distribution<int> dist(vProb1.begin(), vProb1.end());
         return vConf1[ dist(rd) ];
     } else {
         // CASE 2 :  randomly choose any of the unvisited node
+
+        // print only when it is because of random number generation
+        if( vConf1.size() > 0 )
+            cout<<__LINE__<<" : Choose path 2 "<<endl;
+
         int tmp1 = rand() % vConf2.size() ;  // decide the next node to visit
         return vConf2 [ tmp1 ] ;
     }
@@ -177,14 +185,11 @@ void AntSystem4::antThread(Graph* g,
         int nCvisited = Cvisited.size();
         int nCnvisited = Cnvisited.size();
 
-        // we don't need deltaStore to be thread safe because it is accessed only by the current thread
-        keyValueStore deltaStore;  
         float deltaTmp;                  // the temporary value of delta 
 
         // the configuration of the previous node of the graph, in this case it is the first node
         CONF prevConf = initConf;                  
 
-        // deltaStore
         for( auto it = Cvisited.begin() ; it != Cvisited.end() ; it++ ) {
 
             //      the weights will be calculated like
@@ -199,11 +204,8 @@ void AntSystem4::antThread(Graph* g,
             // TODO : Delete this line below before going for production
             cout<<" deltaTmp/(g->getPhero(*it)) : "<<deltaTmp/g->getPhero(*it)<<endl;
 
-            g->addPhero( *it, deltaTmp );
-            if( deltaStore.keyExist( *it ) ) 
-                deltaStore.addValue( *it, deltaTmp );
-            else
-                deltaStore.setValue( *it, deltaTmp );
+            if( deltaTmp > 0 )
+                g->addPhero( *it, deltaTmp );
             
             prevConf = *it ;                // update the value of prevConf to the current value
         }

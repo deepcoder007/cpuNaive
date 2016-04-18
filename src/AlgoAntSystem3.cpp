@@ -175,14 +175,26 @@ void AntSystem3::antThread(Graph* g,
             deltaTmp /= Cvisited.size();               // the total number of visited roboPos decrease the value
             deltaTmp *= g->getPhero(prevConf) ;        // the delta of the previous node of the graph
 
+// Remove this block of code when in production 
+#if defined DEBUG
+/*
+            if( deltaTmp < 0 ) {
+                cout<<" g->getPhero(*it) : "<<g->getPhero(*it)<<endl;
+                cout<<" Cnvisited.size() : "<<Cnvisited.size()<<endl;
+                cout<<" Cvisited.size()  : "<<Cvisited.size()<<endl;
+                cout<<" g->getPhero(prevConf) : "<<g->getPhero(prevConf)<<endl;;
+
+            }
+            */
+#endif
+
+
             // TODO : Delete this line below before going for production
             cout<<" deltaTmp/(g->getPhero(*it)) : "<<deltaTmp/g->getPhero(*it)<<endl;
 
-            g->addPhero( *it, deltaTmp );
-            if( deltaStore.keyExist( *it ) ) 
-                deltaStore.addValue( *it, deltaTmp );
-            else
-                deltaStore.setValue( *it, deltaTmp );
+            // because getPhero is -1 for nodes that are not visited
+            if( deltaTmp > 0 )
+                g->addPhero( *it, deltaTmp );
             
             prevConf = *it ;                // update the value of prevConf to the current value
         }
