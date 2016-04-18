@@ -365,7 +365,7 @@ bool Graph::isnVisit(int k) {
 /*
     Clear the list of visited nodes before start of next ACO iteration
 */
-void Graph::clearVisit(CONF conf) {
+void Graph::clearVisit() {
     for( int i=1 ; i<= N_VAL ; i++ )
         visited[i].clear();
     nvisited.clear();

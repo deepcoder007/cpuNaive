@@ -205,6 +205,8 @@ void AntSystem2::iterate() {
         // Time to update RHO
         // value of rho is given in file config.h
         g->updateValueRho(); 
+
+        g->clearVisit();
     }
 
     cout<<"-----------------------------------------------------------"<<endl;

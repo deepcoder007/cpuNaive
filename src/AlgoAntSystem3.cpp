@@ -175,6 +175,9 @@ void AntSystem3::antThread(Graph* g,
             deltaTmp /= Cvisited.size();               // the total number of visited roboPos decrease the value
             deltaTmp *= g->getPhero(prevConf) ;        // the delta of the previous node of the graph
 
+            // TODO : Delete this line below before going for production
+            cout<<" deltaTmp/(g->getPhero(*it)) : "<<deltaTmp/g->getPhero(*it)<<endl;
+
             g->addPhero( *it, deltaTmp );
             if( deltaStore.keyExist( *it ) ) 
                 deltaStore.addValue( *it, deltaTmp );
@@ -250,6 +253,10 @@ void AntSystem3::iterate() {
         // Time to update RHO
         // value of rho is given in file config.h
         g->updateValueRho(); 
+
+        // CAUTION: This gave me a lot of pain
+        // The list of visited nodes should be cleared to start the next iteration
+        g->clearVisit();
     }
 
     cout<<"-----------------------------------------------------------"<<endl;

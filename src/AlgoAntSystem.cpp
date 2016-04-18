@@ -120,14 +120,17 @@ void AntSystem::antThread(Graph* g,
 
         // Generate numbers according to a distribution 
 
-        //tmp1 = rand() % confSet.size() ;  // decide the next node to visit
+        tmp1 = rand() % confSet.size() ;  // decide the next node to visit
 
-        //auto it = confSet.begin();
-        //for( ; it!=confSet.end() && tmp1>0 ; it++ ) 
-        //    tmp1--;
-        //curr = *it;  // set the current value of configuration
+        auto it = confSet.begin();
+        for( ; it!=confSet.end() && tmp1>0 ; it++ ) 
+            tmp1--;
+        curr = *it;  // set the current value of configuration
 
-        curr = getNextConf( curr.first, confSet, g );
+        // NOTE:  The procedure for node selection given in next line 
+        //        is not suitable for next node selection for AntSystem1
+        // curr = getNextConf( curr.first, confSet, g );
+
         g->setPhero( curr.first , PHERO_MAX );
 
         curr_cost += curr.second;   // add the cost of this node
@@ -197,6 +200,7 @@ void AntSystem::iterate() {
             cout<<it->second<<" , ";
 
         cout<<endl;
+        g->clearVisit();
     }
 
     cout<<"-----------------------------------------------------------"<<endl;

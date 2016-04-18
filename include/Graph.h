@@ -77,7 +77,7 @@ public:
     void markVisit(CONF conf);
     bool isVisit(CONF conf);   // checks if the node is visited
     bool isnVisit(int k);     // checks if the robot pos is visited
-    void clearVisit(CONF conf);   // clear the visited nodes 
+    void clearVisit();   // clear the visited nodes 
     int visitCnt();            // count the number of visited nodes
 
     bool isVacant(CONF key,int pos);   // is the position empty
