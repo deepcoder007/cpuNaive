@@ -90,4 +90,10 @@
 #define DELTA_CONST 10.0
 
 
+// The probability of choosing the next node to be the one which is already visited
+// NOTE: This is a very sensitive parameter in deciding the exploration path, 
+//        a difference of 0.01 can make or break the results drastically
+#define NEXT_NODE_VISITED_PROB 0.75
+
+
 #endif 

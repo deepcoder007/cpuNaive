@@ -131,7 +131,8 @@ void AntSystem::antThread(Graph* g,
         //        is not suitable for next node selection for AntSystem1
         // curr = getNextConf( curr.first, confSet, g );
 
-        g->setPhero( curr.first , PHERO_MAX );
+        // NOTE: Pheromone not required in random selection
+        //g->setPhero( curr.first , PHERO_MAX );
 
         curr_cost += curr.second;   // add the cost of this node
         dist[ curr.first[0] ] = min( dist[curr.first[0]], curr_cost );

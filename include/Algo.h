@@ -170,4 +170,33 @@ public:
    void iterate();  // to execute 1 step of ACO
 };
 
+
+/*
+    In addition to ant system we have pheromone update rule here
+    The pheromone of the discovered nodes will get reduced with time
+    In addition to AntSystem2 , the weight will also increment according to greedy mechanism
+*/
+class AntSystem4 : public Algo
+{
+private:
+    // Here there will be a global tabu_list  in graph g
+   CONF initConf;
+   Graph* g;
+   string datasetName;
+
+   map<int,int> dist;       // distance from home node to all the nodes
+
+    // filters out the list of configuration which are already visited
+   static set<pair<CONF,int> > filterCONF(Graph* g, set<pair<CONF,int> > in);
+   // this is the thread in which individual ant will execute its operations
+   static void antThread(Graph* g,CONF initConf,AntSystem4* antobj, map<int,int>* globDist, int maxloopCount );
+   // returns the next configuration to be visited in graph
+   static pair<CONF,int> getNextConf( CONF curr, set<pair<CONF,int> >& confSet, Graph* g ) ;  
+
+public:
+   void setInit(CONF conf);
+   void setDataset(string filename);
+   void iterate();  // to execute 1 step of ACO
+};
+
 #endif
