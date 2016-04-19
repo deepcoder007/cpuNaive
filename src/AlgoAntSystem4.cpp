@@ -111,7 +111,7 @@ pair<CONF,int> AntSystem4::getNextConf( CONF curr, set<pair<CONF,int> >& confSet
 
         //  NOTE: enter this loop only where there is atleast 1 visited node
         //  CASE 1 :take the already visited node
-        cout<<__LINE__<<" : Choose path 1 "<<endl;
+        //  cout<<__LINE__<<" : Choose path 1 "<<endl;
         random_device rd;
         discrete_distribution<int> dist(vProb1.begin(), vProb1.end());
         return vConf1[ dist(rd) ];
@@ -120,10 +120,10 @@ pair<CONF,int> AntSystem4::getNextConf( CONF curr, set<pair<CONF,int> >& confSet
 
         // CASE 2 :  randomly choose any of the unvisited node
         // print only when it is because of random number generation
-        if( vConf1.size() > 0 )
-            cout<<__LINE__<<" : Choose path 2 "<<endl;
-        else 
-            cout<<"  : Choose path 2 but because vConf1 (pheromone neighbourhood) size is 0 "<<endl;
+        // if( vConf1.size() > 0 )
+        //    cout<<__LINE__<<" : Choose path 2 "<<endl;
+        // else 
+        //    cout<<"  : Choose path 2 but because vConf1 (pheromone neighbourhood) size is 0 "<<endl;
 
         //  Random selection is too bad : lets do something better :D 
         //  int tmp1 = rand() % vConf2.size() ;  // decide the next node to visit
@@ -223,7 +223,7 @@ void AntSystem4::antThread(Graph* g,
             deltaTmp *= g->getPhero(prevConf) ;        // the delta of the previous node of the graph
 
             // TODO : Delete this line below before going for production
-            cout<<" deltaTmp/(g->getPhero(*it)) : "<<deltaTmp/g->getPhero(*it)<<endl;
+            // cout<<" deltaTmp/(g->getPhero(*it)) : "<<deltaTmp/g->getPhero(*it)<<endl;
 
             if( deltaTmp > 0 )
                 g->addPhero( *it, deltaTmp );
