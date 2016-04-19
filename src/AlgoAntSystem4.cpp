@@ -53,7 +53,7 @@ set<pair<CONF,int> > AntSystem4::filterCONF(Graph* g,set<pair<CONF,int> > in) {
 pair<CONF,int> AntSystem4::getNextConf( CONF curr, set<pair<CONF,int> >& confSet, Graph* g ) {
 
     vector<pair<CONF,int> > vConf1, vConf2;  // stores the list of configuration
-    vector<int>  vProb1;     // stores the probabilities , NOTE: vConf2 does not need probability
+    vector<int>             vProb1, vProb2;     // stores the probabilities  
 
     CONF itConf;    // stores the CONF of current it
     float currPhero;        // the pheromone content of current graph
@@ -86,32 +86,51 @@ pair<CONF,int> AntSystem4::getNextConf( CONF curr, set<pair<CONF,int> >& confSet
 
             // CASE 2 : if node is not having a pheromone value
             vConf2.push_back(*it);
+
+            if( itConf[0] == curr[0] ) {
+                // CASE : robot position does not change
+                vProb2.push_back( PHERO_MAX );
+            } else if( g->isnVisit(itConf[0]) ) {
+                // CASE : the position was earlier visited by robot
+                //        higher premium for accessing it
+                vProb2.push_back( PHERO_MAX*EXPLORE_DIFF );
+            } else {
+                // CASE : the position was never visited by robot
+                //        highest premium for accessing it
+                vProb2.push_back( PHERO_MAX*EXPLORE_DIFF*EXPLORE_MULTI );
+            }
         }
     }
 
     random_device rd_n;
-    discrete_distribution<int> dist_n = { 1, 1 , 1, 1 };
+    discrete_distribution<int> dist_n = { 1, 1 , 1, 1, 1, 1, 1, 1, 1 };
     
     // TODO : as of now CASE 1 will happen 75 % of time 
     //        better tune this whole algorithm
     if( dist_n(rd_n) != 0 && vConf1.size() > 0 ) {  
+
         //  NOTE: enter this loop only where there is atleast 1 visited node
         //  CASE 1 :take the already visited node
         cout<<__LINE__<<" : Choose path 1 "<<endl;
         random_device rd;
         discrete_distribution<int> dist(vProb1.begin(), vProb1.end());
         return vConf1[ dist(rd) ];
-    } else {
-        // CASE 2 :  randomly choose any of the unvisited node
 
+    } else {
+
+        // CASE 2 :  randomly choose any of the unvisited node
         // print only when it is because of random number generation
         if( vConf1.size() > 0 )
             cout<<__LINE__<<" : Choose path 2 "<<endl;
         else 
             cout<<"  : Choose path 2 but because vConf1 (pheromone neighbourhood) size is 0 "<<endl;
 
-        int tmp1 = rand() % vConf2.size() ;  // decide the next node to visit
-        return vConf2 [ tmp1 ] ;
+        //  Random selection is too bad : lets do something better :D 
+        //  int tmp1 = rand() % vConf2.size() ;  // decide the next node to visit
+
+        random_device rd;
+        discrete_distribution<int> dist(vProb2.begin(), vProb2.end());
+        return vConf2[ dist(rd) ];
     }
 
 }
