@@ -212,6 +212,22 @@ public:
         2. nodes that are not visited i.e. they were never visited and have no pheromone value
     In addition to AntSystem4 , we have removed some sub-cases of probability distribution 
     over the CASE 1 given above.
+
+    NOTE: I expect that the performance will be lower in this case because for practical purpose, 
+          the pheromone quantity is binary (0/1) in this case. i.e., the only thing that matters
+          is if the pheromone exist or not. If this system gives better performance (i.e. binary pheromone), 
+          then it will be a miracle and breakthrought, because it will change the dynamics of the system. :)
+          We can optimize this class a lot in that case
+            
+          The pheromone rule can work like this :
+          1. By default pheromone value of unvisited node is PHERO_MAX
+          2. When the node is first visited, the PHEROmone value is activated and phero value is set to 1.
+          3. in some k(define it in config.h) iterations  that pheromone value is again set to 0.
+          4. the value k is counted from the last time the particular configuration is visited, i.e.: k is reset to 0 when 
+             we visit the node
+
+          practically current update rules are working similar but they are not optimized for speed and hence taking a lot of time.
+
 */
 class AntSystem5 : public Algo
 {

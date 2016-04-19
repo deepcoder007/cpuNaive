@@ -68,6 +68,9 @@ pair<CONF,int> AntSystem5::getNextConf( CONF curr, set<pair<CONF,int> >& confSet
         {
             vConf1.push_back(*it);  // push the [pair<CONF,int>] pair as it is
 
+            // NOTE: only thing that matters in this case is if the pheromone exist or not, 
+            //       this class (AntSystem5) can be optimized a lot for performance
+            /*
             currPhero = g->getPhero(itConf);
 
             if( itConf[0] == curr[0] ) {
@@ -82,6 +85,7 @@ pair<CONF,int> AntSystem5::getNextConf( CONF curr, set<pair<CONF,int> >& confSet
                 //        highest premium for accessing it
                 vProb1.push_back( currPhero*EXPLORE_DIFF*EXPLORE_MULTI );
             }
+            */
         } else {  
 
             // CASE 2 : if node is not having a pheromone value
