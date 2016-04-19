@@ -2,7 +2,7 @@ TASK:
     In this we have reduction of know pheromone after each step, 
     The rule for selecting the next node is probabilistic
     unlike the earlier bug, the visited conf list is cleaned after 
-    each iteration unlike what happened in log1,2,3,4
+    each iteration unlike what happened in log1,2,3,4,5,6
     
 
 -----------------------------------------

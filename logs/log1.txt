@@ -1,5 +1,8 @@
 TASK:
-This was ANT SYSTEM ,without the updating of weights at the end of iteration
+This was ANT SYSTEM ,
+without the updating of weights at the end of iteration
+NOTE: in the iteration the visited list was not clear after end of iteration
+so practically a node was visited only once.
 
 
 -----------------------------------------

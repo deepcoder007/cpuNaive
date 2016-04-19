@@ -175,6 +175,9 @@ public:
     In addition to ant system we have pheromone update rule here
     The pheromone of the discovered nodes will get reduced with time
     In addition to AntSystem2 , the weight will also increment according to greedy mechanism
+    Choosing next node is divided in 2 parts of ratio 9/10 ( or any ratio provided it is heavily tilted in favour of CASE 1 ) . 
+        1. nodes that are already visited i.e. those that have a pheromone value
+        2. nodes that are not visited i.e. they were never visited and have no pheromone value
 */
 class AntSystem4 : public Algo
 {
@@ -198,5 +201,41 @@ public:
    void setDataset(string filename);
    void iterate();  // to execute 1 step of ACO
 };
+
+
+/*
+    In addition to ant system we have pheromone update rule here
+    The pheromone of the discovered nodes will get reduced with time
+    In addition to AntSystem2 , the weight will also increment according to greedy mechanism
+    Choosing next node is divided in 2 parts of ratio 14/15 ( or any ratio provided it is heavily tilted in favour of CASE 1 ) . 
+        1. nodes that are already visited i.e. those that have a pheromone value
+        2. nodes that are not visited i.e. they were never visited and have no pheromone value
+    In addition to AntSystem4 , we have removed some sub-cases of probability distribution 
+    over the CASE 1 given above.
+*/
+class AntSystem5 : public Algo
+{
+private:
+    // Here there will be a global tabu_list  in graph g
+   CONF initConf;
+   Graph* g;
+   string datasetName;
+   random_devide rd, rd_n;
+
+   map<int,int> dist;       // distance from home node to all the nodes
+
+    // filters out the list of configuration which are already visited
+   static set<pair<CONF,int> > filterCONF(Graph* g, set<pair<CONF,int> > in);
+   // this is the thread in which individual ant will execute its operations
+   static void antThread(Graph* g,CONF initConf,AntSystem5* antobj, map<int,int>* globDist, int maxloopCount );
+   // returns the next configuration to be visited in graph
+   static pair<CONF,int> getNextConf( CONF curr, set<pair<CONF,int> >& confSet, Graph* g ) ;  
+
+public:
+   void setInit(CONF conf);
+   void setDataset(string filename);
+   void iterate();  // to execute 1 step of ACO
+};
+
 
 #endif
