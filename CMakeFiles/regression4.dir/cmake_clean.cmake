@@ -11,7 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/regression4.dir/src/AlgoAntSystem3.cpp.o"
   "CMakeFiles/regression4.dir/src/AlgoAntSystem4.cpp.o"
   "bin/regression4.pdb"
-  "bin/regression4"
+  "bin/regression4.exe"
+  "bin/libregression4.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.
