@@ -70,6 +70,10 @@
 #define PHERO_MAX 1000.0
 #define PHERO_MIN 1.0
 
+// THe pheromone content for binary values
+#define BINARY_PHERO_MAX 100
+#define BINARY_PHERO_MIN 1
+
 // This is the parameter RHO of the ACO
 // The new phero quantity is RHO times the original quantity
 // after this update
@@ -95,5 +99,10 @@
 //        a difference of 0.01 can make or break the results drastically
 #define NEXT_NODE_VISITED_PROB 0.75
 
+// In AntSystem5 there will be only 2 possible values of pheromone , 
+// 1. PHERO_MIN
+// 2. PHERO_MAX
+// This is meant to be a novel approach for very large ACO systems
+#define BINARY_PHERO_COUNTER 20
 
 #endif 
