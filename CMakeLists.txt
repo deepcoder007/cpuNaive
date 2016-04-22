@@ -8,7 +8,9 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 add_executable(regression 
                 src/regression.cpp 
                 src/Graph.cpp 
+                src/binaryGraph.cpp 
                 src/keyValueStore.cpp 
+                src/binaryKeyValueStore.cpp 
                 src/debug.cpp 
                 src/AlgoRandomAnt.cpp 
                 src/AlgoAnt.cpp 
@@ -17,12 +19,15 @@ add_executable(regression
                 src/AlgoAntSystem2.cpp
                 src/AlgoAntSystem3.cpp
                 src/AlgoAntSystem4.cpp
+                src/AlgoAntSystem5.cpp
                 )
 
 add_executable(regression2 
                 src/regression2.cpp 
                 src/Graph.cpp 
+                src/binaryGraph.cpp 
                 src/keyValueStore.cpp 
+                src/binaryKeyValueStore.cpp 
                 src/debug.cpp 
                 src/AlgoRandomAnt.cpp 
                 src/AlgoAnt.cpp 
@@ -31,12 +36,15 @@ add_executable(regression2
                 src/AlgoAntSystem2.cpp
                 src/AlgoAntSystem3.cpp
                 src/AlgoAntSystem4.cpp
+                src/AlgoAntSystem5.cpp
                 )
 
 add_executable(regression3 
                 src/regression3.cpp 
                 src/Graph.cpp 
+                src/binaryGraph.cpp 
                 src/keyValueStore.cpp 
+                src/binaryKeyValueStore.cpp 
                 src/debug.cpp 
                 src/AlgoRandomAnt.cpp 
                 src/AlgoAnt.cpp 
@@ -45,12 +53,15 @@ add_executable(regression3
                 src/AlgoAntSystem2.cpp
                 src/AlgoAntSystem3.cpp
                 src/AlgoAntSystem4.cpp
+                src/AlgoAntSystem5.cpp
                 )
 
 add_executable(regression4 
                 src/regression4.cpp 
                 src/Graph.cpp 
+                src/binaryGraph.cpp 
                 src/keyValueStore.cpp 
+                src/binaryKeyValueStore.cpp 
                 src/debug.cpp 
                 src/AlgoRandomAnt.cpp 
                 src/AlgoAnt.cpp 
@@ -59,11 +70,14 @@ add_executable(regression4
                 src/AlgoAntSystem2.cpp
                 src/AlgoAntSystem3.cpp
                 src/AlgoAntSystem4.cpp
+                src/AlgoAntSystem5.cpp
                 )
 
 add_executable(regression5 
                 src/regression5.cpp 
+                src/Graph.cpp 
                 src/binaryGraph.cpp 
+                src/keyValueStore.cpp 
                 src/binaryKeyValueStore.cpp 
                 src/debug.cpp 
                 src/AlgoRandomAnt.cpp 

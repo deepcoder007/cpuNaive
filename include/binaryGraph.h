@@ -62,7 +62,7 @@ private:
     vector<int> gNeighbors(int x);
 public:
 #if defined UNORDERED
-    binaryGraph() : gweight( PAIR_HASH_BUCKET_COUNT, hashPAIRI2, equalPAIRI2 ) {}
+    binaryGraph() : gweight( PAIR_HASH_BUCKET_COUNT, b_hashPAIRI2, b_equalPAIRI2 ) {}
 #endif
     void readFromFile(string name); // read from file in `data` directory
     set<pair<CONF,int> > getNeighbour(CONF conf); // neighbours of this configuration , along with the cost of each configuration

@@ -74,7 +74,7 @@
 #define PHERO_MIN 1.0
 
 // THe pheromone content for binary values
-#define BINARY_PHERO_MAX 100
+#define BINARY_PHERO_MAX 1000
 #define BINARY_PHERO_MIN 1
 
 // This is the parameter RHO of the ACO

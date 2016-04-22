@@ -28,7 +28,7 @@ bool b_equalPAIRI2( pair<int,int> key1, pair<int,int> key2 ) {
 
 // Function to split the string by the given delimiter
 // NOTE:  THREAD_SAFE
-vector<string> split(string str, char delimiter=' ') {
+vector<string> b_split(string str, char delimiter=' ') {
     vector<string> interval;
     stringstream ss(str);
     string tok;
@@ -150,7 +150,7 @@ void binaryGraph::readFromFile(string name) {
    cout<<"file : "<<"data/"+name<<endl;
    ifstream infile("data/"+name);
    while( getline(infile, line) ) {
-       vector<string> data = split(line,','); 
+       vector<string> data = b_split(line,','); 
        a = atoi(data[0].c_str());
        b = atoi(data[1].c_str());
        w = 1;

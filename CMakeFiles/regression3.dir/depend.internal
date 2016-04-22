@@ -5,36 +5,57 @@ CMakeFiles/regression3.dir/src/AlgoAnt.cpp.o
  /home/vibhanshu/BTP/cpuNaive/src/AlgoAnt.cpp
  include/Algo.h
  include/Graph.h
+ include/binaryGraph.h
+ include/binaryKeyValueStore.h
  include/config.h
  include/keyValueStore.h
 CMakeFiles/regression3.dir/src/AlgoAnt2.cpp.o
  /home/vibhanshu/BTP/cpuNaive/src/AlgoAnt2.cpp
  include/Algo.h
  include/Graph.h
+ include/binaryGraph.h
+ include/binaryKeyValueStore.h
  include/config.h
  include/keyValueStore.h
 CMakeFiles/regression3.dir/src/AlgoAntSystem.cpp.o
  /home/vibhanshu/BTP/cpuNaive/src/AlgoAntSystem.cpp
  include/Algo.h
  include/Graph.h
+ include/binaryGraph.h
+ include/binaryKeyValueStore.h
  include/config.h
  include/keyValueStore.h
 CMakeFiles/regression3.dir/src/AlgoAntSystem2.cpp.o
  /home/vibhanshu/BTP/cpuNaive/src/AlgoAntSystem2.cpp
  include/Algo.h
  include/Graph.h
+ include/binaryGraph.h
+ include/binaryKeyValueStore.h
  include/config.h
  include/keyValueStore.h
 CMakeFiles/regression3.dir/src/AlgoAntSystem3.cpp.o
  /home/vibhanshu/BTP/cpuNaive/src/AlgoAntSystem3.cpp
  include/Algo.h
  include/Graph.h
+ include/binaryGraph.h
+ include/binaryKeyValueStore.h
  include/config.h
  include/keyValueStore.h
 CMakeFiles/regression3.dir/src/AlgoAntSystem4.cpp.o
  /home/vibhanshu/BTP/cpuNaive/src/AlgoAntSystem4.cpp
  include/Algo.h
  include/Graph.h
+ include/binaryGraph.h
+ include/binaryKeyValueStore.h
+ include/config.h
+ include/debug.h
+ include/keyValueStore.h
+CMakeFiles/regression3.dir/src/AlgoAntSystem5.cpp.o
+ /home/vibhanshu/BTP/cpuNaive/src/AlgoAntSystem5.cpp
+ include/Algo.h
+ include/Graph.h
+ include/binaryGraph.h
+ include/binaryKeyValueStore.h
  include/config.h
  include/debug.h
  include/keyValueStore.h
@@ -42,6 +63,8 @@ CMakeFiles/regression3.dir/src/AlgoRandomAnt.cpp.o
  /home/vibhanshu/BTP/cpuNaive/src/AlgoRandomAnt.cpp
  include/Algo.h
  include/Graph.h
+ include/binaryGraph.h
+ include/binaryKeyValueStore.h
  include/config.h
  include/debug.h
  include/keyValueStore.h
@@ -50,9 +73,20 @@ CMakeFiles/regression3.dir/src/Graph.cpp.o
  include/Graph.h
  include/config.h
  include/keyValueStore.h
+CMakeFiles/regression3.dir/src/binaryGraph.cpp.o
+ /home/vibhanshu/BTP/cpuNaive/src/binaryGraph.cpp
+ include/binaryGraph.h
+ include/binaryKeyValueStore.h
+ include/config.h
+CMakeFiles/regression3.dir/src/binaryKeyValueStore.cpp.o
+ /home/vibhanshu/BTP/cpuNaive/src/binaryKeyValueStore.cpp
+ include/binaryKeyValueStore.h
+ include/config.h
 CMakeFiles/regression3.dir/src/debug.cpp.o
  /home/vibhanshu/BTP/cpuNaive/src/debug.cpp
  include/Graph.h
+ include/binaryGraph.h
+ include/binaryKeyValueStore.h
  include/config.h
  include/debug.h
  include/keyValueStore.h
@@ -64,5 +98,7 @@ CMakeFiles/regression3.dir/src/regression3.cpp.o
  /home/vibhanshu/BTP/cpuNaive/src/regression3.cpp
  include/Algo.h
  include/Graph.h
+ include/binaryGraph.h
+ include/binaryKeyValueStore.h
  include/config.h
  include/keyValueStore.h

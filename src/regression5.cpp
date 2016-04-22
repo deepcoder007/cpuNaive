@@ -30,7 +30,7 @@ void test1() {
     cout<<"[DONE] : test1"<<endl;
 }
 
-void writeCONFtoFile(FILE* ptr, Graph* g, CONF conf) {
+void writeCONFtoFile(FILE* ptr, binaryGraph* g, CONF conf) {
    int n = g->getNodeCnt(); 
    fprintf(ptr,"%d",conf[0]);
    for(int i=1 ; i<=n ; i++ ) 

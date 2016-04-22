@@ -1,7 +1,9 @@
 file(REMOVE_RECURSE
   "CMakeFiles/regression.dir/src/regression.cpp.o"
   "CMakeFiles/regression.dir/src/Graph.cpp.o"
+  "CMakeFiles/regression.dir/src/binaryGraph.cpp.o"
   "CMakeFiles/regression.dir/src/keyValueStore.cpp.o"
+  "CMakeFiles/regression.dir/src/binaryKeyValueStore.cpp.o"
   "CMakeFiles/regression.dir/src/debug.cpp.o"
   "CMakeFiles/regression.dir/src/AlgoRandomAnt.cpp.o"
   "CMakeFiles/regression.dir/src/AlgoAnt.cpp.o"
@@ -10,6 +12,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/regression.dir/src/AlgoAntSystem2.cpp.o"
   "CMakeFiles/regression.dir/src/AlgoAntSystem3.cpp.o"
   "CMakeFiles/regression.dir/src/AlgoAntSystem4.cpp.o"
+  "CMakeFiles/regression.dir/src/AlgoAntSystem5.cpp.o"
   "bin/regression.pdb"
   "bin/regression"
 )

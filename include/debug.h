@@ -8,9 +8,12 @@
 #include<cstdio>
 #include<cstdlib>
 #include"Graph.h"
+#include"binaryGraph.h"
 #include"keyValueStore.h"
+#include"binaryKeyValueStore.h"
 
 // prints the configuration
 void printCONF(Graph* g,CONF conf);
 
+void printCONF(binaryGraph* g,CONF conf);
 #endif

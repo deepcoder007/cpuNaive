@@ -237,7 +237,7 @@ private:
    CONF initConf;
    binaryGraph* g;
    string datasetName;
-   random_devide rd, rd_n;
+//   random_device rd, rd_n;
 
    map<int,int> dist;       // distance from home node to all the nodes
 

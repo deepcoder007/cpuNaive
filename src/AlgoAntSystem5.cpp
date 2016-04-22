@@ -35,7 +35,7 @@ void AntSystem5::setDataset(string filename) {
 /*
     Removes the configurations which are already visited
 */
-set<pair<CONF,int> > AntSystem5::filterCONF(Graph* g,set<pair<CONF,int> > in) {
+set<pair<CONF,int> > AntSystem5::filterCONF(binaryGraph* g,set<pair<CONF,int> > in) {
     set<pair<CONF,int> > out;
     for( auto it = in.begin() ; it!=in.end() ; it++ )
         if( !g->isVisit(it->first) )
@@ -49,7 +49,7 @@ set<pair<CONF,int> > AntSystem5::filterCONF(Graph* g,set<pair<CONF,int> > in) {
     curr    : The position of current configuration of ANT
     confSet : configuraiton set of neighbours of atn
 */
-pair<CONF,int> AntSystem5::getNextConf( CONF curr, set<pair<CONF,int> >& confSet, Graph* g ) {
+pair<CONF,int> AntSystem5::getNextConf( CONF curr, set<pair<CONF,int> >& confSet, binaryGraph* g ) {
 
     vector<pair<CONF,int> > vConf1, vConf2;  // stores the list of configuration
     vector<int>             vProb1, vProb2;     // stores the probabilities  
@@ -89,6 +89,7 @@ pair<CONF,int> AntSystem5::getNextConf( CONF curr, set<pair<CONF,int> >& confSet
         }
     }
 
+    random_device rd, rd_n;
     discrete_distribution<int> dist_n = { 1, 1 , 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
     
     // TODO : as of now CASE 1 will happen 14/15 % of time 
@@ -112,7 +113,7 @@ pair<CONF,int> AntSystem5::getNextConf( CONF curr, set<pair<CONF,int> >& confSet
 /*
     This is to be invoked by a thread in ANT
 */
-void AntSystem5::antThread(Graph* g,
+void AntSystem5::antThread(binaryGraph* g,
                 CONF initConf, AntSystem5* antobj, 
                 map<int,int>* globDist,int maxloopCount) {
 
