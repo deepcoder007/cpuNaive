@@ -10,6 +10,7 @@ for x in f:
 f.close()
 
 
+
 data = ln.strip().split(',')
 dt=[]
 

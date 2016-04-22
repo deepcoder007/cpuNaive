@@ -32,12 +32,13 @@ for x in input_file:
 
         splitup = map(int,splitup2)
         for i in range(n):
-            if splitup[i] < 2000000000000000 :
+            if splitup[i] < 100000 :
                 path[i].append(splitup[i])
 
 
 for x in path:
     if len(x) != 0 and x[-1] < 1000000:
-        print x
+        print len(set(x)), x
+
 #plt.plot(range(len(path)), path)
 #plt.show()
