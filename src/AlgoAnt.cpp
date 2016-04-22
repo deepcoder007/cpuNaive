@@ -62,7 +62,8 @@ void Ant::antThread(Graph* g,CONF initConf,Ant* antobj, map<int,int>* globDist) 
     curr = make_pair( initConf, 0 );
 
     int loopCount=0;
-    while( 1 ) {
+    for( int zz = 0 ; zz<1000 ; zz++ ) {
+        cout<<THD<<" : "<<zz<<endl;
         loopCount++;
         if( confSet.size() == 0 ) 
             break;

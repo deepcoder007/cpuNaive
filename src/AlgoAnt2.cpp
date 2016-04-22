@@ -181,7 +181,8 @@ void Ant2::iterate() {
     cout<<" Total visited nodes by robot : "<<totVisit<<endl;
     cout<<" Visit count : "<<g->visitCnt()<<endl; 
     for( auto it = dist.begin() ; it!= dist.end() ; it++ )
-        cout<<it->first<<" : "<<it->second<<endl;
+        if( it->second < 10000 )
+            cout<<it->first<<" : "<<it->second<<endl;
     cout<<" Exiting the loop "<<endl;
 }
 
