@@ -228,6 +228,41 @@ clean: CMakeFiles/regression5.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/regression_tmp.dir
+
+# All Build rule for target.
+CMakeFiles/regression_tmp.dir/all:
+	$(MAKE) -f CMakeFiles/regression_tmp.dir/build.make CMakeFiles/regression_tmp.dir/depend
+	$(MAKE) -f CMakeFiles/regression_tmp.dir/build.make CMakeFiles/regression_tmp.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/vibhanshu/BTP/cpuNaive/CMakeFiles  71 72 73 74 75 76 77 78 79 80 81 82 83 84
+	@echo "Built target regression_tmp"
+.PHONY : CMakeFiles/regression_tmp.dir/all
+
+# Include target in all.
+all: CMakeFiles/regression_tmp.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/regression_tmp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/vibhanshu/BTP/cpuNaive/CMakeFiles 14
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/regression_tmp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/vibhanshu/BTP/cpuNaive/CMakeFiles 0
+.PHONY : CMakeFiles/regression_tmp.dir/rule
+
+# Convenience name for target.
+regression_tmp: CMakeFiles/regression_tmp.dir/rule
+.PHONY : regression_tmp
+
+# clean rule for target.
+CMakeFiles/regression_tmp.dir/clean:
+	$(MAKE) -f CMakeFiles/regression_tmp.dir/build.make CMakeFiles/regression_tmp.dir/clean
+.PHONY : CMakeFiles/regression_tmp.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/regression_tmp.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Special targets to cleanup operation of make.
 
 # Special rule to run CMake to check the build system integrity.

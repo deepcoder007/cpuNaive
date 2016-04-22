@@ -174,6 +174,7 @@ void Graph::readFromFile(string name) {
     Returns the set of neighbours of the current configuration
     conf -> the configuration for which the neighbors are to be found
     TODO : optimization possible, currently it is brute force approach
+           This subroutine is the bottleneck of our algorithm, do something about it
 */
 set<pair<CONF,int> > Graph::getNeighbour(CONF conf) {
 

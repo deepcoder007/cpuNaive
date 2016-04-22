@@ -58,13 +58,14 @@ void RandomAnt::iterate() {
     curr = make_pair(initConf, 0);
 
     // print all the configuration in confSet
-    cout<<" printing confSet of size : "<<confSet.size()<<endl;
-    printCONF(g,initConf);
-    for( auto it : confSet )
-        printCONF(g, it.first );
+//    cout<<" printing confSet of size : "<<confSet.size()<<endl;
+//    printCONF(g,initConf);
+//   for( auto it : confSet )
+//      printCONF(g, it.first );
     
     cout<<"--------------------------------------------------"<<endl;
-    while( 1 ) {
+    for( int zz = 0 ; zz < 1000 ; zz++ ) {
+        cout<<zz<<endl;
         if( confSet.size() == 0 ) 
             break;
 //        cout<<" neighbour size : "<<confSet.size()<<endl;

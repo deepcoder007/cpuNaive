@@ -63,7 +63,7 @@ void test2()  {
     conf[16]=~0;
     conf[17]=~0;
 
-    AntSystem5 rant ;
+    RandomAnt rant ;
 #if defined N8
     cout<<"N8"<<endl;
     rant.setDataset("graph8.dat");
