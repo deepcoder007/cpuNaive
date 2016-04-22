@@ -11,11 +11,14 @@
 // Number of bits to be packed in an integer
 #define INT_SZ 30
 
+
+// NOTE: in the values given below there is always a performance and space trade-off
+
 // Number of hashbuckets in the unordered CONF container
-#define CONF_HASH_BUCKET_COUNT 100
+#define CONF_HASH_BUCKET_COUNT 500
 
 // Number of hashbuckets in unordered pair<int,int> container
-#define PAIR_HASH_BUCKET_COUNT 100
+#define PAIR_HASH_BUCKET_COUNT 500
 
 /*
     N_VAL  : The number of nodes in the graph

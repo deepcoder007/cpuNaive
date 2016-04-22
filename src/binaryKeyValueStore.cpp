@@ -39,10 +39,13 @@ bool b_equalCONF( CONF key1 , CONF key2 ) {
     If value does not exist then return -1
 */
 int binaryKeyValueStore::getValue(CONF key) {
-    if( phero[key[0]].find(key) != phero[key[0]].end() ) {
-        return phero[key[0]][key];
+    if( phero[key[0]].find(key) != phero[key[0]].end()   ) {
+	if( phero[key[0]][key] > 0 )   // if not enough iterations are done
+		return BINARY_PHERO_MAX;
+	else 
+		return BINARY_PHERO_MIN;
     } else {
-        return -1;    // node node initialized -> in MMAS it is MAX_VALUE
+        return BINARY_PHERO_MAX;    // node node initialized -> in MMAS it is MAX_VALUE
     }
 }
 
@@ -83,12 +86,12 @@ void binaryKeyValueStore::updateValueRho() {
     for(int i=0 ; i<= N_VAL ; i++ ) {
         for( auto it = phero[i].begin() ; it != phero[i].end() ; it++ ) {
             it->second--;               //  this is the case with binary pheromone storage
-            if( it->second < PHERO_MIN )
-                it->second = PHERO_MIN ;
+            if( it->second < 0 )
+                it->second = 0 ;
         }
     }
-
 }
+
 
 // Clears the container manually to avoid memory leakage
 void binaryKeyValueStore::clear() {

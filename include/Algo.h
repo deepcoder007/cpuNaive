@@ -2,6 +2,7 @@
 #define ALGO_H
 //#include"keyValueStore.h"
 #include"Graph.h"
+#include"binaryGraph.h"
 #include<vector>
 #include<set>
 #include<string>
@@ -234,18 +235,18 @@ class AntSystem5 : public Algo
 private:
     // Here there will be a global tabu_list  in graph g
    CONF initConf;
-   Graph* g;
+   binaryGraph* g;
    string datasetName;
    random_devide rd, rd_n;
 
    map<int,int> dist;       // distance from home node to all the nodes
 
     // filters out the list of configuration which are already visited
-   static set<pair<CONF,int> > filterCONF(Graph* g, set<pair<CONF,int> > in);
+   static set<pair<CONF,int> > filterCONF(binaryGraph* g, set<pair<CONF,int> > in);
    // this is the thread in which individual ant will execute its operations
-   static void antThread(Graph* g,CONF initConf,AntSystem5* antobj, map<int,int>* globDist, int maxloopCount );
+   static void antThread(binaryGraph* g,CONF initConf,AntSystem5* antobj, map<int,int>* globDist, int maxloopCount );
    // returns the next configuration to be visited in graph
-   static pair<CONF,int> getNextConf( CONF curr, set<pair<CONF,int> >& confSet, Graph* g ) ;  
+   static pair<CONF,int> getNextConf( CONF curr, set<pair<CONF,int> >& confSet, binaryGraph* g ) ;  
 
 public:
    void setInit(CONF conf);

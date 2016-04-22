@@ -47,7 +47,7 @@ public:
         phero.reserve(N_VAL+1);   // changes the capacity of the vector
         for( int i=0; i<=N_VAL ; i++ )
             phero.push_back( unordered_map<CONF,
-                   float,
+                   int,
                    function<unsigned long(CONF)>,
                    function<bool(CONF,CONF)> > 
                    (CONF_HASH_BUCKET_COUNT,b_hashCONF,b_equalCONF) ); 

@@ -260,7 +260,7 @@ bool binaryGraph::isNeighbour(CONF conf1,CONF conf2) {
     Returns the pheromone content of the graph
     NOTE: THREAD_SAFE
 */
-float binaryGraph::getPhero(CONF conf) {
+int binaryGraph::getPhero(CONF conf) {
     // lock before doing it
     shared_lock<shared_timed_mutex> lck(phero_mutex[conf[0]]);
     return storage.getValue(conf);
@@ -270,16 +270,11 @@ float binaryGraph::getPhero(CONF conf) {
     Sets the value of pheromone in the graph
     NOTE: THREAD_SAFE
 */
-bool binaryGraph::setPhero(CONF conf, float value) {
+bool binaryGraph::setPhero(CONF conf) {
 
     // lock before doing this
-    if( value < PHERO_MIN )
-        value = PHERO_MIN;
-    else if( value > PHERO_MAX )
-        value = PHERO_MAX;
-
     unique_lock<shared_timed_mutex> lck(phero_mutex[conf[0]]);
-    storage.setValue(conf, value);
+    storage.setValue(conf);
     return true;
 }
 
@@ -287,26 +282,12 @@ bool binaryGraph::setPhero(CONF conf, float value) {
     Adds to the value of pheromone in the graph
     NOTE: THREAD_SAFE
 */
-bool binaryGraph::addPhero(CONF conf, float value) {
+bool binaryGraph::addPhero(CONF conf) {
 
     // lock before doing this
     // retrieve the old value of phero first
     unique_lock<shared_timed_mutex> lck(phero_mutex[conf[0]]);
-    float curr_tmp = storage.getValue(conf);
-    if( curr_tmp == -1 ) {
-        if( value < PHERO_MIN )
-            value = PHERO_MIN;
-        else if( value > PHERO_MAX )
-            value = PHERO_MAX;
-        storage.setValue(conf, value);
-    } else {
-        value = value + curr_tmp;
-        if( value < PHERO_MIN )
-            value = PHERO_MIN;
-        else if( value > PHERO_MAX )
-            value = PHERO_MAX;
-        storage.setValue(conf, value);
-    }
+    storage.setValue(conf);
     return true;
 }
 

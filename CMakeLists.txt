@@ -61,3 +61,18 @@ add_executable(regression4
                 src/AlgoAntSystem4.cpp
                 )
 
+add_executable(regression5 
+                src/regression5.cpp 
+                src/binaryGraph.cpp 
+                src/binaryKeyValueStore.cpp 
+                src/debug.cpp 
+                src/AlgoRandomAnt.cpp 
+                src/AlgoAnt.cpp 
+                src/AlgoAnt2.cpp 
+                src/AlgoAntSystem.cpp
+                src/AlgoAntSystem2.cpp
+                src/AlgoAntSystem3.cpp
+                src/AlgoAntSystem4.cpp
+                src/AlgoAntSystem5.cpp
+                )
+

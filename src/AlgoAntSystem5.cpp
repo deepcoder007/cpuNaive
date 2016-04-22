@@ -1,6 +1,6 @@
 //#include"keyValueStore.h"
 #include"Algo.h"
-#include"keyValueStore.h"
+#include"binaryKeyValueStore.h"
 #include"debug.h"
 #include<ctime>
 #include<cstdlib>
@@ -14,9 +14,8 @@ using namespace std;
 mutex Ant_dist_lock_7;
 
 //--------------------------------------------------------------
-//      The "ANT SYSTEM 2"  implementation
-//      Int this version we have weight reduction after each 
-//      iteration to allow for exploring newer paths
+//      The "ANT SYSTEM 5"  implementation
+//      This version implements the binary version of ACO
 //--------------------------------------------------------------
 
 /*
@@ -64,28 +63,12 @@ pair<CONF,int> AntSystem5::getNextConf( CONF curr, set<pair<CONF,int> >& confSet
         itConf = it->first;
 
         // CASE 1 : this node is having a pheromone value 
-        if( g->existPhero(itConf) ) 
+        if( g->existPhero(itConf) && g->getPhero(itConf) == BINARY_PHERO_MAX ) 
         {
+            // Enter this case only when the node is discovered
+            // and case is entered within BINARY_PHERO_COUNTER times number of iterations
             vConf1.push_back(*it);  // push the [pair<CONF,int>] pair as it is
 
-            // NOTE: only thing that matters in this case is if the pheromone exist or not, 
-            //       this class (AntSystem5) can be optimized a lot for performance
-            /*
-            currPhero = g->getPhero(itConf);
-
-            if( itConf[0] == curr[0] ) {
-                // CASE : robot position does not change
-                vProb1.push_back( currPhero );
-            } else if( g->isnVisit(itConf[0]) ) {
-                // CASE : the position was earlier visited by robot
-                //        higher premium for accessing it
-                vProb1.push_back( currPhero*EXPLORE_DIFF );
-            } else {
-                // CASE : the position was never visited by robot
-                //        highest premium for accessing it
-                vProb1.push_back( currPhero*EXPLORE_DIFF*EXPLORE_MULTI );
-            }
-            */
         } else {  
 
             // CASE 2 : if node is not having a pheromone value
@@ -93,50 +76,32 @@ pair<CONF,int> AntSystem5::getNextConf( CONF curr, set<pair<CONF,int> >& confSet
 
             if( itConf[0] == curr[0] ) {
                 // CASE : robot position does not change
-                vProb2.push_back( PHERO_MAX );
+                vProb2.push_back( 1 );
             } else if( g->isnVisit(itConf[0]) ) {
                 // CASE : the position was earlier visited by robot
                 //        higher premium for accessing it
-                vProb2.push_back( PHERO_MAX*EXPLORE_DIFF );
+                vProb2.push_back( EXPLORE_DIFF );
             } else {
                 // CASE : the position was never visited by robot
                 //        highest premium for accessing it
-                vProb2.push_back( PHERO_MAX*EXPLORE_DIFF*EXPLORE_MULTI );
+                vProb2.push_back( EXPLORE_DIFF*EXPLORE_MULTI );
             }
         }
     }
 
-//    random_device rd_n;
     discrete_distribution<int> dist_n = { 1, 1 , 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
     
-    // TODO : as of now CASE 1 will happen 75 % of time 
+    // TODO : as of now CASE 1 will happen 14/15 % of time 
     //        better tune this whole algorithm
     if( dist_n(rd_n) != 0 && vConf1.size() > 0 ) {  
 
-        //  NOTE: enter this loop only where there is atleast 1 visited node
-        //  CASE 1 :take the already visited node
-        //  cout<<__LINE__<<" : Choose path 1 "<<endl;
-        //  random_device rd;
-        //  discrete_distribution<int> dist(vProb1.begin(), vProb1.end());
-        //  return vConf1[ dist(rd) ];
-        
         //  In AntSystem5 , do it by random selection for this case, no further sub-cases
             int tmp1 = rand() % vConf1.size() ;
             return vConf1[ tmp1 ];
 
     } else {
 
-        // CASE 2 :  randomly choose any of the unvisited node
-        // print only when it is because of random number generation
-        // if( vConf1.size() > 0 )
-        //    cout<<__LINE__<<" : Choose path 2 "<<endl;
-        // else 
-        //    cout<<"  : Choose path 2 but because vConf1 (pheromone neighbourhood) size is 0 "<<endl;
-
-        //  Random selection is too bad : lets do something better :D 
-        //  int tmp1 = rand() % vConf2.size() ;  // decide the next node to visit
-
-//        random_device rd;
+	// Make an informed choice based on the value
         discrete_distribution<int> dist(vProb2.begin(), vProb2.end());
         return vConf2[ dist(rd) ];
     }
@@ -160,8 +125,6 @@ void AntSystem5::antThread(Graph* g,
     // The variables below are used to save the path and other info about the path
     // to store teh per node increment of the nodes
     // these 2 variables below will be used to calculate the delta
-    set<CONF> Cvisited;          // a list of visited configurations in the current path
-    set<int>  Cnvisited;         // a list of nodes visited by the robot in current path
     
     map<int,int> dist;
     // initialize the dist structure in the graph
@@ -176,70 +139,23 @@ void AntSystem5::antThread(Graph* g,
     int loopCount=0;
     for( loopCount=0 ; loopCount < maxloopCount ; loopCount ++ )
     {
- //       cout<<" Loop Number : "<<loopCount<<endl;
         if( confSet.size() == 0 ) 
             break;
 
-        // cout<<" neighbour size : "<<confSet.size()<<endl;
-
-        // Generate numbers according to a distribution 
-
-        //tmp1 = rand() % confSet.size() ;  // decide the next node to visit
-
-        //auto it = confSet.begin();
-        //for( ; it!=confSet.end() && tmp1>0 ; it++ ) 
-        //    tmp1--;
-        //curr = *it;  // set the current value of configuration
-
         curr = getNextConf( curr.first, confSet, g );
 
-        Cvisited.insert( curr.first );   // insert this in the list of visited nodes
-        Cnvisited.insert( curr.first[0] );   // insert this in the list of visited robot positions
+        g->markVisit( curr.first );        // mark the configuration visited
 
-
-        // CAUTION : possible point of bug
-        if( !g->existPhero( curr.first) )
-            g->setPhero( curr.first , PHERO_MAX );
+        // CAUTION : possible point of bug in earlier implementations
+	//           This is the point where binary updation occurs
+        g->setPhero( curr.first );
 
         curr_cost += curr.second;   // add the cost of this node
         dist[ curr.first[0] ] = min( dist[curr.first[0]], curr_cost );
-        g->markVisit( curr.first );        // mark the configuration visited
         confSet = filterCONF( g, g->getNeighbour( curr.first ) );  
 
     }
 
-    // calculate the deltas for CONF's on this path
-    // and push those deltas to the phero data structure in the graph
-    {
-        int nCvisited = Cvisited.size();
-        int nCnvisited = Cnvisited.size();
-
-        float deltaTmp;                  // the temporary value of delta 
-
-        // the configuration of the previous node of the graph, in this case it is the first node
-        CONF prevConf = initConf;                  
-
-        for( auto it = Cvisited.begin() ; it != Cvisited.end() ; it++ ) {
-
-            //      the weights will be calculated like
-            //      w_(t+1) = w_(t)*( 1 + [delta] )
-            // NOTE : check the value of DELTA_CONST before running this simulation
-            //        This is to ensure that [delta] is not too high or low
-            deltaTmp = DELTA_CONST*( g->getPhero(*it) ) ;          // the base line
-            deltaTmp *= Cnvisited.size();              // the number of visited roboPos increases the value
-            deltaTmp /= Cvisited.size();               // the total number of visited roboPos decrease the value
-            deltaTmp *= g->getPhero(prevConf) ;        // the delta of the previous node of the graph
-
-            // TODO : Delete this line below before going for production
-            // cout<<" deltaTmp/(g->getPhero(*it)) : "<<deltaTmp/g->getPhero(*it)<<endl;
-
-            if( deltaTmp > 0 )
-                g->addPhero( *it, deltaTmp );
-            
-            prevConf = *it ;                // update the value of prevConf to the current value
-        }
-
-    }
 
     // update the global distance matrix in this block
     {
@@ -267,7 +183,7 @@ void AntSystem5::iterate() {
 
     srand(time(NULL));
 
-    g = new Graph;
+    g = new binaryGraph;
     g->readFromFile(datasetName);   // read data from file
     n = g->getNodeCnt(); 
     
