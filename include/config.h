@@ -85,7 +85,7 @@
 
 // Number of iterations in the AntSystem iterate(), i'th iteration
 // will be i times the base in this system
-#define ANT_SYSTEM_ITERATION 100
+#define ANT_SYSTEM_ITERATION 10000
 
 // The path length of the first iteration in Ant System 
 #define ANT_SYSTEM_PATH_BASE 10

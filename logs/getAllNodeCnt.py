@@ -3,6 +3,7 @@
 import sys
 
 final_tally = []
+avg = []
 
 f=open(sys.argv[1],'r')
 
@@ -21,6 +22,7 @@ for x in f:
             pass
     dt = filter( (lambda  x: x<10000), dt )
     final_tally.append(len(dt))
+    avg.append(float(sum(dt))/len(dt))
 
 	
 
@@ -47,5 +49,5 @@ print float(sum(dt))/len(dt)
 print 'Path lengths : '
 i=1 
 for x in final_tally:
-    print i,x
+    print i,x,avg[i-1]
     i+=1
